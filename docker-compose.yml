@@ -1,0 +1,49 @@
+# ==============================================================================
+# C-Hear Technologies — Docker Compose
+# Usage:
+#   Production:   docker compose up -d
+#   Rebuild:      docker compose up -d --build
+#   Logs:         docker compose logs -f web
+#   Stop:         docker compose down
+# ==============================================================================
+
+version: "3.9"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    image: c-hear-technologies:latest
+    container_name: c_hear_web
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      # Mount SSL certificates (Let's Encrypt or custom)
+      - ./ssl:/etc/nginx/ssl:ro
+      # Optional: mount live nginx config for hot reload without rebuild
+      # - ./docker/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    environment:
+      - NGINX_ENTRYPOINT_QUIET_LOGS=1
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    labels:
+      - "com.chear.service=web"
+      - "com.chear.version=latest"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  default:
+    name: c_hear_network
+    driver: bridge
