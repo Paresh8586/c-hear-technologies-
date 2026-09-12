@@ -8,19 +8,18 @@
  *  - Invoice number, due date, PO reference
  *  - Full line-item table (desc, SKU, qty, unit price ex-VAT)
  *  - Auto VAT + delivery totals
- *  - Secure payment link field (Worldpay or any hosted payment URL)
+ *  - Optional secure payment link field for the selected merchant provider
  *  - "Send Invoice" → opens email client to client address, CC sales@
  *  - "Copy Invoice Link" → copies a shareable /invoice/:ref URL for
  *    the client-facing invoice page
  *  - Live HTML preview matching the client view
  */
 import React, { useState, useMemo } from 'react';
-import { PlusCircle, Trash2, Send, Copy, Link2, FileText, CheckCircle2, Zap, AlertCircle } from 'lucide-react';
+import { PlusCircle, Trash2, Send, Copy, Link2, FileText, CheckCircle2 } from 'lucide-react';
 import { toast } from 'sonner';
 import PageLayout from '@/components/layout/PageLayout';
 import PageMeta from '@/components/common/PageMeta';
 import { VAT_RATES } from '@/lib/pricing';
-import { buildWorldpayInvoiceUrl, worldpayConfigured } from '@/lib/worldpay';
 
 interface LineItem {
   id: string;
@@ -54,7 +53,7 @@ const InvoiceBuilderPage: React.FC = () => {
   const [meta, setMeta]     = useState({
     date: todayStr, due: dueStr, poRef: '',
     country: 'GB' as Country, notes: '',
-    paymentUrl: '',  // Worldpay or any hosted payment page URL
+    paymentUrl: '',  // Hosted payment page URL from the selected provider
   });
   const [lines, setLines]   = useState<LineItem[]>([newLine()]);
   const [delivery, setDelivery] = useState(0);
@@ -134,23 +133,6 @@ const InvoiceBuilderPage: React.FC = () => {
     ].filter(Boolean).join('\n');
   }, [invoiceRef, meta, client, lines, subtotalExVat, delivery, vatRate, vatAmount, grandTotal, invoiceViewUrl]);
 
-  // ── Generate Worldpay HPP link ────────────────────────────────────────────
-  const handleGenerateWorldpayLink = () => {
-    const url = buildWorldpayInvoiceUrl({
-      invoiceRef,
-      amountGBP:     grandTotal,
-      customerName:  client.name,
-      customerEmail: client.email,
-      currency:      meta.country === 'US' ? 'USD' : 'GBP',
-    });
-    if (!url) {
-      toast.error('Worldpay credentials not configured — add VITE_WORLDPAY_MERCHANT_CODE and VITE_WORLDPAY_INSTALLATION_ID to your .env file.');
-      return;
-    }
-    setMeta(m => ({ ...m, paymentUrl: url }));
-    toast.success('Worldpay payment link generated and filled in below.');
-  };
-
   // ── Actions ───────────────────────────────────────────────────────────────
   const handleSend = () => {
     if (!client.email) { toast.error('Enter the customer email address.'); return; }
@@ -172,15 +154,15 @@ const InvoiceBuilderPage: React.FC = () => {
     <PageLayout>
       <PageMeta
         title="Invoice Builder — Staff Portal | C-Hear Technologies"
-        description="Staff tool for raising formal invoices after quote acceptance. Includes Worldpay payment link generation and client-facing invoice view."
-        keywords="invoice builder, staff portal, IT invoice, Worldpay payment"
+        description="Staff tool for raising formal invoices after quote acceptance, with an optional hosted payment link and client-facing invoice view."
+        keywords="invoice builder, staff portal, IT invoice, payment link"
       />
       <section className="bg-brand-black text-white py-12">
         <div className="max-w-[1480px] mx-auto px-4 md:px-9">
           <p className="eyebrow-label mb-2">STAFF TOOLS</p>
           <h1 className="text-4xl font-extrabold tracking-tight mb-2">Invoice Builder</h1>
           <p className="text-white/60 max-w-2xl text-sm">
-            Raise a formal invoice after quote acceptance. Include a secure Worldpay payment link and send from <strong>sales@c-hear.co.uk</strong>.
+            Raise a formal invoice after quote acceptance. Add a secure payment link from your merchant provider and send from <strong>sales@c-hear.co.uk</strong>.
           </p>
         </div>
       </section>
@@ -311,38 +293,16 @@ const InvoiceBuilderPage: React.FC = () => {
                 <div>
                   <div className="flex items-center justify-between flex-wrap gap-2 mb-2">
                     <label className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-muted-foreground">
-                      <Link2 size={13} /> Secure Payment Link (Worldpay)
+                      <Link2 size={13} /> Secure Payment Link
                     </label>
-                    {worldpayConfigured() ? (
-                      <button
-                        type="button"
-                        onClick={handleGenerateWorldpayLink}
-                        className="flex items-center gap-1.5 bg-primary text-primary-foreground text-xs font-bold px-3 py-1.5 rounded hover:bg-primary/90 transition-colors"
-                      >
-                        <Zap size={11} /> Generate Worldpay Link
-                      </button>
-                    ) : (
-                      <span className="flex items-center gap-1 text-[11px] text-amber-600 font-semibold">
-                        <AlertCircle size={11} /> Worldpay credentials not configured
-                      </span>
-                    )}
                   </div>
                   <input
                     type="url"
                     value={meta.paymentUrl}
                     onChange={e => setMeta(m => ({ ...m, paymentUrl: e.target.value }))}
-                    placeholder={worldpayConfigured()
-                      ? 'Click "Generate Worldpay Link" above, or paste a custom URL'
-                      : 'Add VITE_WORLDPAY_MERCHANT_CODE + VITE_WORLDPAY_INSTALLATION_ID to .env to auto-generate'}
+                    placeholder="Paste the hosted payment URL from your merchant provider"
                     className="w-full border border-border rounded px-3 py-2.5 text-sm focus:outline-none focus:border-primary font-mono"
                   />
-                  {!worldpayConfigured() && (
-                    <p className="text-[11px] text-amber-600 mt-1 font-medium">
-                      Configure <code className="bg-amber-50 px-1 rounded">VITE_WORLDPAY_MERCHANT_CODE</code> and{' '}
-                      <code className="bg-amber-50 px-1 rounded">VITE_WORLDPAY_INSTALLATION_ID</code> in your{' '}
-                      <code className="bg-amber-50 px-1 rounded">.env</code> file to enable the auto-generate button.
-                    </p>
-                  )}
                   {meta.paymentUrl && (
                     <p className="text-[11px] text-green-700 mt-1 font-semibold flex items-center gap-1">
                       ✓ Payment link set — the "Pay Now" button on the client invoice will point here.
@@ -403,7 +363,7 @@ const InvoiceBuilderPage: React.FC = () => {
               </div>
 
               <p className="text-[11px] text-muted-foreground">
-                The invoice link takes the client to a branded payment page with a "Pay Now" button linked to your Worldpay URL.
+                The invoice link takes the client to a branded payment page with a "Pay Now" button linked to the payment URL you provide.
               </p>
             </div>
           </div>

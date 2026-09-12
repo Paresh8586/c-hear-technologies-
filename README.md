@@ -1,7 +1,7 @@
 # C-Hear Technologies Limited — Website Deployment Guide
 
 > **Production site:** [www.c-hear.co.uk](https://www.c-hear.co.uk)
-> **Tech stack:** React 18 + TypeScript + Vite + Tailwind CSS + Supabase + Worldpay
+> **Tech stack:** React 18 + TypeScript + Vite + Tailwind CSS + Supabase
 
 ---
 
@@ -15,9 +15,8 @@
 6. [Option C — Deploy to Cloudflare Pages](#6-option-c--deploy-to-cloudflare-pages)
 7. [Option D — Self-Hosted VPS with Docker + Nginx](#7-option-d--self-hosted-vps-with-docker--nginx)
 8. [Connecting a Custom Domain](#8-connecting-a-custom-domain)
-9. [Worldpay Configuration](#9-worldpay-configuration)
-10. [Supabase Configuration](#10-supabase-configuration)
-11. [Pre-Launch Checklist](#11-pre-launch-checklist)
+9. [Supabase Configuration](#9-supabase-configuration)
+10. [Pre-Launch Checklist](#10-pre-launch-checklist)
 
 ---
 
@@ -30,10 +29,6 @@ Create a `.env` file in the project root (never commit this file — it is in `.
 VITE_SUPABASE_URL=https://YOUR_PROJECT_ID.supabase.co
 VITE_SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY
 
-# ── Worldpay ──────────────────────────────────────────────────────────────────
-VITE_WORLDPAY_MERCHANT_CODE=YOUR_MERCHANT_CODE
-VITE_WORLDPAY_INSTALLATION_ID=YOUR_INSTALLATION_ID
-VITE_WORLDPAY_CLIENT_KEY=YOUR_CLIENT_KEY
 ```
 
 ### Where to find these values
@@ -42,9 +37,6 @@ VITE_WORLDPAY_CLIENT_KEY=YOUR_CLIENT_KEY
 |---|---|
 | `VITE_SUPABASE_URL` | Supabase Dashboard → Settings → API → Project URL |
 | `VITE_SUPABASE_ANON_KEY` | Supabase Dashboard → Settings → API → anon public key |
-| `VITE_WORLDPAY_MERCHANT_CODE` | Worldpay Merchant Admin → Profile |
-| `VITE_WORLDPAY_INSTALLATION_ID` | Worldpay Merchant Admin → Installations |
-| `VITE_WORLDPAY_CLIENT_KEY` | Worldpay Merchant Admin → Installations → Client Key |
 
 ---
 
@@ -108,7 +100,7 @@ Vercel is the fastest option with automatic deploys on every Git push.
 
 5. **Add environment variables**
    - In Vercel project → **Settings → Environment Variables**
-   - Add all five variables from [Section 1](#1-environment-variables)
+   - Add the Supabase variables from [Section 1](#1-environment-variables)
    - Set them for **Production**, **Preview**, and **Development** environments
 
 6. **Deploy** — Click **"Deploy"**. Vercel will build and publish your site automatically.
@@ -136,7 +128,7 @@ Every `git push` to `main` will trigger a new production deploy automatically.
    | Publish directory | `dist` |
 
 4. **Add environment variables**
-   - Site settings → **Environment variables** → Add all five from [Section 1](#1-environment-variables)
+   - Site settings → **Environment variables** → Add the Supabase variables from [Section 1](#1-environment-variables)
 
 5. **Add a `netlify.toml`** file in your project root for SPA routing:
    ```toml
@@ -277,25 +269,7 @@ echo "0 0 1 */2 * certbot renew --quiet && docker compose restart nginx" | sudo 
 
 ---
 
-## 9. Worldpay Configuration
-
-Before going live, update your Worldpay settings to match your production domain:
-
-1. Log into **Worldpay Merchant Admin** → Installations
-2. Set **Payment Response URL** to:
-   ```
-   https://www.c-hear.co.uk/checkout
-   ```
-3. Set **Shopper redirect URL** to:
-   ```
-   https://www.c-hear.co.uk/checkout
-   ```
-4. Add `https://www.c-hear.co.uk` to the **allowed domains / CORS origins** list
-5. Switch your installation from **Test** to **Production** mode
-
----
-
-## 10. Supabase Configuration
+## 9. Supabase Configuration
 
 1. In **Supabase Dashboard → Authentication → URL Configuration**:
    - Set **Site URL** to `https://www.c-hear.co.uk`
@@ -308,11 +282,9 @@ Before going live, update your Worldpay settings to match your production domain
 
 ---
 
-## 11. Pre-Launch Checklist
+## 10. Pre-Launch Checklist
 
-- [ ] All five environment variables set in hosting provider dashboard
-- [ ] Worldpay switched from Test → Production mode
-- [ ] Worldpay Payment Response URL updated to production domain
+- [ ] Supabase environment variables set in hosting provider dashboard
 - [ ] Supabase Site URL updated to `https://www.c-hear.co.uk`
 - [ ] DNS A/CNAME records updated at your domain registrar
 - [ ] SSL certificate active (green padlock in browser)

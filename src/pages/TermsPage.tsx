@@ -23,7 +23,6 @@ const SECTIONS: Section[] = [
           <li><strong className="text-foreground">"Goods"</strong> means any hardware, software, licensing or related products supplied by the Company.</li>
           <li><strong className="text-foreground">"Order"</strong> means a confirmed purchase order or accepted quotation.</li>
           <li><strong className="text-foreground">"Website"</strong> means www.c-hear.co.uk and all sub-pages thereof.</li>
-          <li><strong className="text-foreground">"Worldpay"</strong> means Worldpay (UK) Limited, the Company's authorised payment service provider.</li>
           <li><strong className="text-foreground">"Working Day"</strong> means Monday to Friday, excluding UK public holidays.</li>
         </ul>
         <p>These Terms apply to all transactions conducted through the Website or by quotation, and supersede any prior agreements unless expressly agreed in writing by a director of the Company.</p>
@@ -64,17 +63,16 @@ const SECTIONS: Section[] = [
   },
   {
     id: 'payment',
-    title: '4. Payment Terms & Worldpay',
+    title: '4. Payment Terms',
     content: (
       <div className="flex flex-col gap-3 text-sm text-muted-foreground">
         <p>Payment is due in full prior to dispatch unless the Customer holds an approved credit account. The Company accepts payment by:</p>
         <ul className="list-disc pl-5 flex flex-col gap-1.5">
-          <li>Credit or debit card via Worldpay's secure hosted payment page.</li>
+          <li>Credit or debit card via the Company's selected secure payment provider.</li>
           <li>Bank transfer (BACS / CHAPS) — details provided on invoice.</li>
           <li>Other methods as agreed in writing.</li>
         </ul>
-        <p><strong className="text-foreground">Worldpay Payment Processing:</strong> Card payments are processed by Worldpay (UK) Limited, an authorised Payment Institution regulated by the Financial Conduct Authority (FCA). The Company does not store, transmit or process card data directly. All card transactions are subject to Worldpay's own terms of service and privacy policy. By submitting a card payment the Customer also agrees to Worldpay's terms.</p>
-        <p>Worldpay may apply fraud-screening and 3D Secure (3DS) authentication. The Company accepts no liability for delays caused by Worldpay's authentication processes. Chargebacks initiated without first contacting the Company may result in suspension of the Customer's account.</p>
+        <p>Card payments are processed by the Company's selected payment provider. The Company does not store, transmit or process card data directly. Card transactions are subject to the provider's own terms of service and privacy policy.</p>
         <p>For credit account holders, payment terms are <strong className="text-foreground">net 30 days</strong> from invoice date unless stated otherwise. Late payments will incur statutory interest under the Late Payment of Commercial Debts (Interest) Act 1998 at 8% above the Bank of England base rate, plus compensation charges as set out in that Act.</p>
       </div>
     ),
@@ -132,7 +130,7 @@ const SECTIONS: Section[] = [
         <p><strong className="text-foreground">6.3 Manufacturer Warranty.</strong> All goods are supplied with the relevant manufacturer warranty. Warranty claims must be directed in the first instance to the Company, who will liaise with the manufacturer or distributor.</p>
         <p><strong className="text-foreground">6.4 Software & Licensing.</strong> Opened software, activated licence keys or downloaded digital products cannot be returned or refunded unless they are defective.</p>
         <p><strong className="text-foreground">6.5 Order Cancellations.</strong> Orders may not be cancelled once dispatched. For goods that have not yet been dispatched, cancellations must be requested in writing and are subject to the Company's acceptance and any restocking fees imposed by the supplier.</p>
-        <p><strong className="text-foreground">6.6 Refunds.</strong> Approved refunds will be processed to the original payment method within 10 Working Days of the Company confirming the return. Where payment was made via Worldpay, refunds are subject to Worldpay's own processing timescales.</p>
+        <p><strong className="text-foreground">6.6 Refunds.</strong> Approved refunds will be processed to the original payment method within 10 Working Days of the Company confirming the return. Refund processing times may vary depending on the payment provider.</p>
       </div>
     ),
   },
@@ -148,7 +146,7 @@ const SECTIONS: Section[] = [
           <li>Loss of profit, revenue, business or anticipated savings;</li>
           <li>Loss of data or software;</li>
           <li>Indirect or consequential losses;</li>
-          <li>Any loss arising from the Customer's use of, or inability to use, third-party software or services including Worldpay.</li>
+          <li>Any loss arising from the Customer's use of, or inability to use, third-party software or services.</li>
         </ul>
         <p>The Customer shall indemnify the Company against all claims, liabilities, costs and expenses arising from the Customer's breach of these Terms or misuse of the goods.</p>
       </div>
@@ -170,8 +168,8 @@ const SECTIONS: Section[] = [
     content: (
       <div className="flex flex-col gap-3 text-sm text-muted-foreground">
         <p>The Company processes personal data in accordance with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018. Personal data provided in connection with an order will be used for order processing, delivery and customer communications.</p>
-        <p>Payment card data is processed exclusively by Worldpay and is subject to Worldpay's Privacy Policy. The Company does not store card numbers or CVV/CVC codes.</p>
-        <p>The Company will not sell or share personal data with third parties except as required for order fulfilment (e.g. carriers), payment processing (Worldpay) or as required by law.</p>
+        <p>Payment card data is processed exclusively by the Company's selected payment provider and is subject to that provider's privacy policy. The Company does not store card numbers or CVV/CVC codes.</p>
+        <p>The Company will not sell or share personal data with third parties except as required for order fulfilment (e.g. carriers), payment processing or as required by law.</p>
       </div>
     ),
   },
@@ -236,8 +234,8 @@ const TermsPage: React.FC = () => (
   <PageLayout>
     <PageMeta
       title="Terms & Conditions — C-Hear Technologies"
-      description="Terms and conditions for C-Hear Technologies Limited, covering product supply, pricing, VAT, delivery, returns, payment via Worldpay, and governing law."
-      keywords="terms and conditions, delivery policy, returns policy, Worldpay payments, IT supplier terms"
+      description="Terms and conditions for C-Hear Technologies Limited, covering product supply, pricing, VAT, delivery, returns, payment, and governing law."
+      keywords="terms and conditions, delivery policy, returns policy, payment terms, IT supplier terms"
     />
 
     {/* Hero */}
@@ -261,7 +259,7 @@ const TermsPage: React.FC = () => (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
           {[
             { label: 'Governing Law', value: 'England & Wales' },
-            { label: 'Payment Provider', value: 'Worldpay (FCA Regulated)' },
+            { label: 'Payment Provider', value: 'Selected merchant provider' },
             { label: 'Invoice Currency', value: 'GBP (£ Sterling)' },
           ].map(item => (
             <div key={item.label} className="flex flex-col gap-0.5">

@@ -5,7 +5,6 @@ import { toast } from 'sonner';
 import PageLayout from '@/components/layout/PageLayout';
 import PageMeta from '@/components/common/PageMeta';
 import { useCart } from '@/contexts/CartContext';
-import WorldpayPayment from '@/components/payment/WorldpayPayment';
 import type { Currency } from '@/types/product';
 import { CURRENCY_RATES, CURRENCY_SYMBOLS } from '@/types/product';
 import {
@@ -18,7 +17,7 @@ type Step = 'details' | 'payment' | 'confirmed';
 const CheckoutPage: React.FC = () => {
   const [searchParams] = useSearchParams();
   const isBuyNow = searchParams.get('mode') === 'buy';
-  const { buyCart, quoteCart, products, clearCart, buyItems, quoteItems } = useCart();
+  const { buyCart, quoteCart, products, buyItems, quoteItems } = useCart();
 
   // Checkout always operates on the Buy Now cart; quote flow uses QuotePage
   const cart     = isBuyNow ? buyCart : quoteCart;
@@ -68,17 +67,6 @@ const CheckoutPage: React.FC = () => {
     e.preventDefault();
     if (!country) { toast.error('Please select a delivery country to calculate VAT.'); return; }
     setStep('payment');
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  };
-
-  // Worldpay returned a session token → payment authorised
-  const handlePaymentSuccess = (sessionId: string, amountPence: number) => {
-    // In production: POST { sessionId, amountPence, orderRef, ...form } to your server
-    // which calls the Worldpay Orders API with the SERVICE_KEY (server-side only).
-    console.info('Worldpay session token:', sessionId, 'amount pence:', amountPence);
-    toast.success('Payment authorised! Order confirmed.');
-    clearCart('buy');
-    setStep('confirmed');
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
@@ -311,11 +299,24 @@ const CheckoutPage: React.FC = () => {
                   <button onClick={() => setStep('details')} className="text-xs text-primary hover:underline mt-1 text-left">← Edit details</button>
                 </div>
 
-                <WorldpayPayment
-                  amountGBP={breakdown.grandTotal}
-                  onSuccess={handlePaymentSuccess}
-                  onCancel={() => setStep('details')}
-                />
+                <div className="bg-card border border-border rounded p-6">
+                  <h2 className="font-extrabold text-xl mb-2">Payment setup in progress</h2>
+                  <p className="text-muted-foreground text-sm mb-5">
+                    Online payment is temporarily unavailable while we connect our new merchant provider.
+                    Please contact sales to complete your order.
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    <a
+                      href={`mailto:sales@c-hear.co.uk?subject=${encodeURIComponent('Order enquiry from C-Hear website')}&body=${encodeURIComponent(`Name: ${form.name}\nCompany: ${form.company}\nEmail: ${form.email}\nOrder total: ${fmt(breakdown.grandTotal)}`)}`}
+                      className="inline-flex items-center justify-center bg-primary text-primary-foreground font-bold px-5 py-3 rounded hover:bg-primary/90 transition-colors"
+                    >
+                      Contact sales
+                    </a>
+                    <button onClick={() => setStep('details')} className="text-sm text-primary hover:underline px-2">
+                      ← Edit details
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           )}
@@ -327,7 +328,7 @@ const CheckoutPage: React.FC = () => {
                 <CheckCircle2 size={40} className="text-green-600" />
               </div>
               <h2 className="text-3xl font-extrabold mb-3">Order Confirmed!</h2>
-              <p className="text-muted-foreground mb-2">Thank you, {form.name}. Your payment has been authorised by Worldpay.</p>
+              <p className="text-muted-foreground mb-2">Thank you, {form.name}. Your order enquiry has been received.</p>
               <p className="text-muted-foreground text-sm mb-8">A confirmation will be sent to <span className="font-semibold text-foreground">{form.email}</span>. Our team will process your order and arrange delivery.</p>
               <Link to="/products" className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold px-6 py-3 rounded hover:bg-primary/90 transition-colors">
                 Continue Shopping

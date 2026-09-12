@@ -307,7 +307,7 @@ const CartDrawer: React.FC = () => {
               Proceed to Pay →
             </button>
             <p className="text-[10px] text-muted-foreground text-center">
-              Secure payment via Worldpay · All major cards accepted
+              Secure payment · All major cards accepted
             </p>
           </div>
         )}

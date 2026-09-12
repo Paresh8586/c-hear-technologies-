@@ -186,7 +186,7 @@ const InvoiceViewPage: React.FC = () => {
                 <span className="flex items-center gap-1"><ShieldCheck size={11} className="text-green-600" /> PCI-DSS Compliant</span>
                 <span className="flex items-center gap-1"><ShieldCheck size={11} className="text-green-600" /> 3D Secure</span>
                 <span className="flex items-center gap-1"><Lock size={11} /> 256-bit TLS</span>
-                <span className="flex items-center gap-1 font-semibold text-foreground/60">Powered by Worldpay</span>
+                <span className="flex items-center gap-1 font-semibold text-foreground/60">Secure payment</span>
               </div>
             </div>
             <div className="flex flex-col items-stretch md:items-end gap-2 shrink-0">
@@ -199,7 +199,7 @@ const InvoiceViewPage: React.FC = () => {
                 <CreditCard size={18} /> Pay {fmt(grandTotal)} Now →
               </a>
               <p className="text-[10px] text-muted-foreground text-center">
-                You'll be taken to Worldpay's secure payment page
+                You'll be taken to the secure payment page provided by the merchant
               </p>
             </div>
           </div>
