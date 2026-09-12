@@ -11,6 +11,9 @@ node_modules
 dist
 dist-ssr
 output
+.env
+.env.*
+!.env.example
 *.local
 package-lock.json
 playwright-report

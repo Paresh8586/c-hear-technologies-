@@ -1,11 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
 /* stylelint-disable */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* C-Hear Technologies — Punchy Brutalist Red/Black Design System */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-
 @font-face {
   font-family: 'DouyinSans';
   src: url('https://resource-static.cdn.bcebos.com/fonts/DouyinSansBold.woff2') format('woff2');
