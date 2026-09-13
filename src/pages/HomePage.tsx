@@ -210,7 +210,7 @@ const HomePage: React.FC = () => {
                 </a>
               </div>
             </div>
-            <div className="md:col-span-2 hidden md:flex translate-y-0 flex-col items-center justify-center">
+            <div className="md:col-span-2 hidden md:flex -translate-y-16 flex-col items-center justify-center">
               <p className="mb-0 w-[calc(100%+3rem)] max-w-none -translate-x-6 text-center text-3xl font-extrabold leading-tight tracking-wide md:text-5xl">
                 <span className="block text-primary">Welcome to</span>
                 <span className="block text-white">C Hear</span>
@@ -222,9 +222,9 @@ const HomePage: React.FC = () => {
               <img
                 src="/assets/hero/technology-hero.png"
                 alt="Business technology"
-                className="relative -mt-2 -translate-x-6 w-[calc(100%+3rem)] max-w-none h-80 object-contain object-center rounded-xl opacity-80"
+                className="relative -mt-4 -translate-x-6 w-[calc(100%+3rem)] max-w-none h-80 object-contain object-center rounded-xl opacity-80"
               />
-              <p className="mt-1 w-[calc(100%+3rem)] max-w-none -translate-x-6 text-center text-lg font-bold leading-snug tracking-wide md:text-xl">
+              <p className="mt-8 w-[calc(100%+3rem)] max-w-none -translate-x-6 text-center text-lg font-bold leading-snug tracking-wide md:text-xl">
                 <span className="text-primary">Technology that works</span>{' '}
                 <span className="text-white">as hard as your business.</span>
               </p>
