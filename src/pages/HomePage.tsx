@@ -210,11 +210,11 @@ const HomePage: React.FC = () => {
                 </a>
               </div>
             </div>
-            <div className="md:col-span-2 hidden md:flex items-center justify-start">
+            <div className="md:col-span-2 hidden md:flex items-center justify-center">
               <img
                 src="/assets/hero/technology-hero.png"
                 alt="Business technology"
-                className="w-full max-w-md h-80 object-cover object-left rounded-xl opacity-80"
+                className="relative -translate-x-3 w-full max-w-md h-80 object-cover object-left rounded-xl opacity-80"
               />
             </div>
           </div>
