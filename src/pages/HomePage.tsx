@@ -210,14 +210,15 @@ const HomePage: React.FC = () => {
                 </a>
               </div>
             </div>
-            <div className="md:col-span-2 hidden md:flex -translate-y-5 flex-col items-center justify-center">
+            <div className="md:col-span-2 hidden md:flex -translate-y-10 flex-col items-center justify-center">
               <img
                 src="/assets/hero/technology-hero.png"
                 alt="Business technology"
                 className="relative -translate-x-6 w-[calc(100%+3rem)] max-w-none h-80 object-contain object-center rounded-xl opacity-80"
               />
-              <p className="mt-2 max-w-sm text-center text-sm font-semibold tracking-wide text-white/70">
-                Technology that works as hard as your business.
+              <p className="mt-2 max-w-sm text-center text-base font-bold leading-snug tracking-wide md:text-lg">
+                <span className="text-primary">Technology that works</span>{' '}
+                <span className="text-white">as hard as your business.</span>
               </p>
             </div>
           </div>
