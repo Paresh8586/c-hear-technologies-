@@ -182,7 +182,7 @@ const HomePage: React.FC = () => {
         <div className="relative max-w-[1480px] mx-auto px-4 md:px-9">
           <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-center min-h-[560px] py-16">
             <div className="md:col-span-3 relative z-10">
-              <div className="inline-flex items-center gap-2 bg-primary/20 text-primary text-xs font-bold px-3 py-1.5 rounded-full mb-5 uppercase tracking-widest">
+              <div className="inline-flex items-center gap-2 bg-transparent text-primary text-xs font-bold px-3 py-1.5 rounded-full mb-5 uppercase tracking-widest">
                 <BadgeCheck size={12} /> Trusted B2B Technology Partner
               </div>
               <h1 className="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight text-white mb-5">
