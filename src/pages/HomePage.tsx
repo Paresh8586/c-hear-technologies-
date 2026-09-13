@@ -210,7 +210,7 @@ const HomePage: React.FC = () => {
                 </a>
               </div>
             </div>
-            <div className="md:col-span-2 hidden md:flex items-center justify-center">
+            <div className="md:col-span-2 hidden md:flex items-center justify-start">
               <img
                 src="/assets/hero/technology-hero.png"
                 alt="Business technology"
