@@ -214,7 +214,7 @@ const HomePage: React.FC = () => {
               <img
                 src="/assets/hero/technology-hero.png"
                 alt="Business technology"
-                className="relative -translate-x-3 w-full max-w-md h-80 object-cover object-left rounded-xl opacity-80"
+                className="relative -translate-x-6 w-[calc(100%+3rem)] max-w-none h-80 object-contain object-center rounded-xl opacity-80"
               />
             </div>
           </div>
