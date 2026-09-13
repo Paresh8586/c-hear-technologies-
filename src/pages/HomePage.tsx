@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { CheckCircle, Truck, HeadphonesIcon, Shield, Star, ArrowRight, ChevronRight, Quote, Phone, Mail, BadgeCheck, Layers } from 'lucide-react';
+import { CheckCircle, Truck, HeadphonesIcon, Shield, Star, ArrowRight, ChevronRight, Quote, BadgeCheck, Layers } from 'lucide-react';
 import { toast } from 'sonner';
 import PageLayout from '@/components/layout/PageLayout';
 import PageMeta from '@/components/common/PageMeta';
@@ -182,8 +182,8 @@ const HomePage: React.FC = () => {
         <div className="relative max-w-[1480px] mx-auto px-4 md:px-9">
           <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-center min-h-[560px] py-16">
             <div className="md:col-span-3 relative z-10">
-              <div className="inline-flex items-center gap-2 bg-transparent text-primary text-xs font-bold px-3 py-1.5 rounded-full mb-5 uppercase tracking-widest">
-                <BadgeCheck size={12} /> Trusted B2B Technology Partner
+              <div className="text-primary text-xs font-bold mb-5 uppercase tracking-widest">
+                Premium UK IT Supplier &amp; Procurement
               </div>
               <h1 className="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight text-white mb-5">
                 Your Business.<br />
@@ -201,32 +201,21 @@ const HomePage: React.FC = () => {
                   Request a Quote
                 </Link>
               </div>
-              <div className="flex flex-wrap gap-6 mt-10">
-                <a href="tel:+442038078262" className="flex items-center gap-2 text-white/50 text-sm hover:text-white transition-colors">
-                  <Phone size={14} /> 0203 807 8262
-                </a>
-                <a href="mailto:sales@c-hear.co.uk" className="flex items-center gap-2 text-white/50 text-sm hover:text-white transition-colors">
-                  <Mail size={14} /> sales@c-hear.co.uk
-                </a>
-              </div>
             </div>
-            <div className="md:col-span-2 hidden md:flex -translate-y-16 flex-col items-center justify-center">
-              <p className="mt-8 mb-0 w-[calc(100%+3rem)] max-w-none -translate-x-6 text-center text-3xl font-extrabold leading-tight tracking-wide md:text-5xl">
-                <span className="block text-primary">Welcome to</span>
-                <span className="block text-white">C Hear</span>
-              </p>
-              <p className="mb-0 w-[calc(100%+3rem)] max-w-none -translate-x-6 text-center text-base font-bold leading-tight tracking-wide md:text-lg">
-                <span className="text-primary">Your IT Specialist</span>{' '}
-                <span className="text-white">Partner</span>
-              </p>
+            <div className="md:col-span-2 hidden md:flex flex-col items-center justify-center text-center">
+              <h2 className="mb-1 text-3xl font-extrabold leading-tight text-primary md:text-5xl">
+                Welcome to C Hear
+              </h2>
+              <h3 className="mb-6 text-lg font-semibold tracking-wide text-white md:text-xl">
+                Tailored Hardware &amp; Enterprise Software Units
+              </h3>
               <img
                 src="/assets/hero/technology-hero.png"
-                alt="Business technology"
-                className="relative -mt-8 -translate-x-6 w-[calc(100%+3rem)] max-w-none h-80 object-contain object-center rounded-2xl opacity-80"
+                alt="C-Hear hardware catalogue"
+                className="h-auto w-full max-w-[480px] object-contain opacity-80 [filter:drop-shadow(0_15px_25px_rgba(0,0,0,0.6))]"
               />
-              <p className="-mt-3 w-[calc(100%+3rem)] max-w-none -translate-x-6 text-center text-lg font-bold leading-snug tracking-wide md:text-xl">
-                <span className="text-primary">Technology that works</span>{' '}
-                <span className="text-white">as hard as your business.</span>
+              <p className="mt-7 text-lg font-bold tracking-wide text-white md:text-xl">
+                Scalable Infrastructure. Fast, Reliable UK Delivery.
               </p>
             </div>
           </div>
