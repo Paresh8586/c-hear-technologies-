@@ -211,7 +211,7 @@ const HomePage: React.FC = () => {
               </div>
             </div>
             <div className="md:col-span-2 hidden md:flex -translate-y-16 flex-col items-center justify-center">
-              <p className="mb-0 w-[calc(100%+3rem)] max-w-none -translate-x-6 text-center text-3xl font-extrabold leading-tight tracking-wide md:text-5xl">
+              <p className="mt-8 mb-0 w-[calc(100%+3rem)] max-w-none -translate-x-6 text-center text-3xl font-extrabold leading-tight tracking-wide md:text-5xl">
                 <span className="block text-primary">Welcome to</span>
                 <span className="block text-white">C Hear</span>
               </p>
