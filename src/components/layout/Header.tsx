@@ -21,7 +21,7 @@ const NAV_LINKS = [
 ];
 
 const Header: React.FC = () => {
-  const { buyItems, openCart } = useCart();
+  const { buyItems, openCart, products } = useCart();
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
@@ -125,7 +125,9 @@ const Header: React.FC = () => {
                     ))}
                   </div>
                   <div className="border-t border-border px-4 py-3 bg-muted/40 flex items-center justify-between rounded-b-lg">
-                    <p className="text-xs text-muted-foreground">645 products across 24 categories</p>
+                    <p className="text-xs text-muted-foreground">
+                      {products.length > 0 ? products.length.toLocaleString() : '6,000+'} products across 24 categories
+                    </p>
                     <Link
                       to="/products"
                       onClick={() => setProductsOpen(false)}

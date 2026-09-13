@@ -5,7 +5,7 @@ import PageLayout from '@/components/layout/PageLayout';
 import PageMeta from '@/components/common/PageMeta';
 
 const FACTS = [
-  { value: '645+', label: 'Products in catalogue' },
+  { value: '6,000+', label: 'Products in catalogue' },
   { value: '24', label: 'Product categories' },
   { value: 'UK', label: 'Primary market' },
   { value: 'B2B', label: 'Business-first workflow' },
@@ -23,7 +23,7 @@ const MILESTONES = [
   { year: '2013', title: 'Founded', desc: 'C-Hear Technologies established as a B2B IT supply business.' },
   { year: '2016', title: 'Expanded', desc: 'Grew catalogue to include networking, CCTV and unified communications.' },
   { year: '2020', title: 'Digital Platform', desc: 'Launched online product catalogue with live stock and pricing.' },
-  { year: '2024', title: '645 Products', desc: 'Expanded to 24 product categories with direct buy and quote workflows.' },
+  { year: '2024', title: '6,000+ Products', desc: 'Expanded to a broad supplier catalogue with direct buy and quote workflows.' },
 ];
 
 const AboutPage: React.FC = () => (

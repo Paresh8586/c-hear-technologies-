@@ -21,7 +21,6 @@ const BENEFITS = [
 /* ─── Stats ─────────────────────────────────────────────────────────────── */
 const STATS = [
   { value: '500+', label: 'Happy Clients' },
-  { value: '645+', label: 'Products Available' },
   { value: '10+', label: 'Years Experience' },
   { value: '24/7', label: 'Support' },
 ];
@@ -143,6 +142,7 @@ const HomePage: React.FC = () => {
   const [quoteForm, setQuoteForm] = useState({ name: '', company: '', email: '', message: '' });
 
   const categories = [...new Set(products.map(p => p.category))].sort();
+  const productCountLabel = products.length > 0 ? `${products.length.toLocaleString()}+` : '6,000+';
 
   const featured = products
     .filter(p => {
@@ -168,7 +168,7 @@ const HomePage: React.FC = () => {
     <PageLayout>
       <PageMeta
         title="C-Hear Technologies — IT Hardware & Software Supplier"
-        description="C-Hear Technologies supplies genuine IT hardware and software for businesses. Browse 645+ products, get a quote, or buy direct."
+        description="C-Hear Technologies supplies genuine IT hardware and software for businesses. Browse our extensive product catalogue, get a quote, or buy direct."
         keywords="IT hardware supplier, business technology, computer hardware, software licensing, IT equipment"
       />
 
@@ -255,7 +255,7 @@ const HomePage: React.FC = () => {
             {TAXONOMY.map(tc => (
               <Link
                 key={tc.id}
-                to={`/products?topcat=${tc.id}`}
+                to={`/products/list?topcat=${tc.id}`}
                 className="group bg-white border border-border rounded-lg p-4 flex flex-col items-center gap-2 text-center hover:-translate-y-1 hover:shadow-hover transition-all duration-200"
               >
                 <span className="text-3xl">{tc.icon}</span>
@@ -298,7 +298,7 @@ const HomePage: React.FC = () => {
       <section className="bg-primary text-white py-14">
         <div className="max-w-[1480px] mx-auto px-4 md:px-9">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-white/20">
-            {STATS.map(s => (
+            {[{ value: productCountLabel, label: 'Products Available' }, ...STATS].map(s => (
               <div key={s.label} className="flex flex-col items-center py-8 px-4 text-center">
                 <p className="text-5xl font-extrabold text-white mb-2 tracking-tight">
                   <CountUp target={s.value} />
@@ -479,7 +479,7 @@ const HomePage: React.FC = () => {
             </div>
             <div className="grid grid-cols-2 gap-4 min-w-0">
               {[
-                { value: '645+', label: 'Products in catalogue' },
+                { value: productCountLabel, label: 'Products in catalogue' },
                 { value: '24', label: 'Product categories' },
                 { value: '3', label: 'Supported currencies (GBP, USD, EUR)' },
                 { value: 'B2B', label: 'Business-first workflow' },

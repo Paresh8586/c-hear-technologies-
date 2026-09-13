@@ -100,7 +100,7 @@ const ProductListPage: React.FC = () => {
     <PageLayout>
       <PageMeta
         title="Shop IT Products — C-Hear Technologies Hardware & Software"
-        description="Browse and filter 79 IT products from C-Hear Technologies. Find computers, networking, security, software and accessories. Request a quote or buy direct."
+        description="Browse and filter the C-Hear Technologies IT catalogue. Find computers, networking, security, software and accessories. Request a quote or buy direct."
         keywords="buy IT hardware, shop technology, IT products online, computer hardware, business software"
       />
       {/* Page hero */}
