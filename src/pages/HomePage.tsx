@@ -211,16 +211,16 @@ const HomePage: React.FC = () => {
               </div>
             </div>
             <div className="md:col-span-2 hidden md:flex translate-y-4 flex-col items-center justify-center">
-              <p className="mb-1 text-center text-lg font-extrabold tracking-wide md:text-xl">
-                <span className="text-primary">Welcome to</span>{' '}
-                <span className="text-white">C Hear</span>
+              <p className="mb-1 text-center text-3xl font-extrabold leading-tight tracking-wide md:text-5xl">
+                <span className="block text-primary">Welcome to</span>
+                <span className="block text-white">C Hear</span>
               </p>
               <img
                 src="/assets/hero/technology-hero.png"
                 alt="Business technology"
                 className="relative -translate-x-6 w-[calc(100%+3rem)] max-w-none h-80 object-contain object-center rounded-xl opacity-80"
               />
-              <p className="mt-0 max-w-sm text-center text-base font-bold leading-snug tracking-wide md:text-lg">
+              <p className="-mt-2 max-w-sm text-center text-lg font-bold leading-snug tracking-wide md:text-xl">
                 <span className="text-primary">Technology that works</span>{' '}
                 <span className="text-white">as hard as your business.</span>
               </p>
