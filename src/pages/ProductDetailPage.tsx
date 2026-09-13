@@ -7,7 +7,7 @@ import PageMeta from '@/components/common/PageMeta';
 import CategorySpecs from '@/components/product/CategorySpecs';
 import VariantSelector from '@/components/product/VariantSelector';
 import { useCart } from '@/contexts/CartContext';
-import { CATEGORY_ICONS, stockStatus, formatMoney } from '@/types/product';
+import { CATEGORY_ICONS, CATEGORY_IMAGES, stockStatus, formatMoney } from '@/types/product';
 import { applyMargin } from '@/lib/pricing';
 
 const ProductDetailPage: React.FC = () => {
@@ -119,10 +119,14 @@ const ProductDetailPage: React.FC = () => {
 
           {/* Left column: image + specs table */}
           <div className="space-y-6">
-            <div className="bg-muted border border-border rounded-lg flex items-center justify-center h-64 md:h-80">
-              <span className="text-[120px] text-primary/30 select-none">
-                {CATEGORY_ICONS[product.category] ?? '📦'}
-              </span>
+            <div className="bg-muted border border-border rounded-lg flex items-center justify-center h-64 md:h-80 overflow-hidden">
+              {CATEGORY_IMAGES[product.category] ? (
+                <img src={CATEGORY_IMAGES[product.category]} alt="" className="h-full w-full object-cover" />
+              ) : (
+                <span className="text-[120px] text-primary/30 select-none">
+                  {CATEGORY_ICONS[product.category] ?? '📦'}
+                </span>
+              )}
             </div>
             {hasSpecs && (
               <CategorySpecs category={product.category} specs={product.specs!} />
@@ -136,7 +140,7 @@ const ProductDetailPage: React.FC = () => {
               <span className="bg-brand-red-soft text-primary text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-widest">
                 {product.category}
               </span>
-              <span className="text-[10px] font-mono text-muted-foreground">{product.sku}</span>
+              <span className="text-[10px] font-mono text-muted-foreground">MPN: {product.mpn ?? product.sku}</span>
             </div>
 
             <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-2 text-balance">{product.name}</h1>

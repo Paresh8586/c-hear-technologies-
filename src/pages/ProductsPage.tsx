@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import { Search, SlidersHorizontal, ArrowLeft } from 'lucide-react';
 import { toast } from 'sonner';
@@ -6,7 +6,7 @@ import PageLayout from '@/components/layout/PageLayout';
 import PageMeta from '@/components/common/PageMeta';
 import { useCart } from '@/contexts/CartContext';
 import type { Currency } from '@/types/product';
-import { CATEGORY_ICONS, SPEC_LABELS, formatMoney, stockStatus } from '@/types/product';
+import { CATEGORY_ICONS, CATEGORY_IMAGES, SPEC_LABELS, formatMoney, stockStatus } from '@/types/product';
 import { TAXONOMY } from '@/lib/taxonomy';
 import { applyMargin } from '@/lib/pricing';
 
@@ -38,6 +38,7 @@ function resolveCategoriesForTop(topId: string): string[] {
 }
 
 const ProductListPage: React.FC = () => {
+  const PAGE_SIZE = 48;
   const { products, addToCart, openCart } = useCart();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -50,6 +51,7 @@ const ProductListPage: React.FC = () => {
   const [search, setSearch]     = useState(paramSearch);
   const [category, setCategory] = useState(paramCat);
   const [currency, setCurrency] = useState<Currency>('GBP');
+  const [page, setPage] = useState(1);
 
   // If topcat param given, pre-filter to those categories (no single-cat lock)
   const topcatCategories = useMemo(
@@ -71,6 +73,13 @@ const ProductListPage: React.FC = () => {
       return matchSearch && matchCat && matchTop;
     });
   }, [products, search, category, topcatCategories]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [search, category, paramTop]);
+
+  const pageCount = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const pagedProducts = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   const handleQuote = (sku: string, name: string) => {
     addToCart(sku, 'quote');
@@ -181,7 +190,7 @@ const ProductListPage: React.FC = () => {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-              {filtered.map(p => {
+              {pagedProducts.map(p => {
                 const cardKeys       = CARD_SPEC_KEYS[p.category] ?? [];
                 const labelMap       = SPEC_LABELS[p.category] ?? {};
                 const specHighlights = cardKeys
@@ -209,9 +218,13 @@ const ProductListPage: React.FC = () => {
                       <span className={`absolute bottom-3 right-3 text-[9px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wide ${stockClasses}`}>
                         {stock.label}
                       </span>
-                      <span className="text-primary/40 group-hover:text-primary transition-colors text-4xl">
-                        {CATEGORY_ICONS[p.category] ?? '📦'}
-                      </span>
+                      {CATEGORY_IMAGES[p.category] ? (
+                        <img src={CATEGORY_IMAGES[p.category]} alt="" className="h-full w-full object-cover opacity-75 group-hover:scale-105 transition-transform duration-300" />
+                      ) : (
+                        <span className="text-primary/40 group-hover:text-primary transition-colors text-4xl">
+                          {CATEGORY_ICONS[p.category] ?? '📦'}
+                        </span>
+                      )}
                     </div>
                     <div className="p-4 flex flex-col flex-1">
                       <p className="text-[10px] font-extrabold uppercase tracking-widest text-muted-foreground">{p.brand}</p>
@@ -227,7 +240,7 @@ const ProductListPage: React.FC = () => {
                           ))}
                         </div>
                       )}
-                      <p className="text-[10px] text-muted-foreground mt-2">SKU: {p.sku}</p>
+                      <p className="text-[10px] text-muted-foreground mt-2">MPN: {p.mpn ?? p.sku}</p>
                       <p className="text-[10px] text-muted-foreground">{p.availability ?? 'Quote / Confirm Stock'}</p>
                       {p.price != null ? (
                         <div className="mt-1">
@@ -262,6 +275,29 @@ const ProductListPage: React.FC = () => {
                   </article>
                 );
               })}
+            </div>
+          )}
+          {filtered.length > PAGE_SIZE && (
+            <div className="flex items-center justify-center gap-4 mt-8">
+              <button
+                type="button"
+                onClick={() => setPage(current => Math.max(1, current - 1))}
+                disabled={page === 1}
+                className="border border-border rounded px-4 py-2 text-sm font-semibold disabled:opacity-40 hover:border-primary hover:text-primary"
+              >
+                Previous
+              </button>
+              <span className="text-sm text-muted-foreground">
+                Page {page} of {pageCount}
+              </span>
+              <button
+                type="button"
+                onClick={() => setPage(current => Math.min(pageCount, current + 1))}
+                disabled={page === pageCount}
+                className="border border-border rounded px-4 py-2 text-sm font-semibold disabled:opacity-40 hover:border-primary hover:text-primary"
+              >
+                Next
+              </button>
             </div>
           )}
         </div>

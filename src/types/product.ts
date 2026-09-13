@@ -5,6 +5,8 @@ export interface ProductVariant {
 
 export interface Product {
   sku: string;
+  /** Manufacturer part number from the supplier feed */
+  mpn?: string;
   category: string;
   brand: string;
   model: string;
@@ -217,6 +219,15 @@ export const CATEGORY_ICONS: Record<string, string> = {
   // Office & Facilities
   'Office Supplies': '🖊',
   'Furniture & Ergonomics': '🪑',
+};
+
+export const CATEGORY_IMAGES: Record<string, string> = {
+  'Laptops & Computers': '/assets/categories/computers-laptops.png',
+  'Monitors & Displays': '/assets/categories/monitors-displays.png',
+  'Networking': '/assets/categories/networking.png',
+  'Printers & Imaging': '/assets/categories/printers-consumables.png',
+  'Software & Licensing': '/assets/categories/software-licensing.png',
+  'CCTV & Security': '/assets/categories/security-storage.png',
 };
 
 export const FEATURED_CATEGORIES = [

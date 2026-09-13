@@ -85,7 +85,7 @@ const Header: React.FC = () => {
                 onClick={() => setProductsOpen(o => !o)}
                 onMouseEnter={() => setProductsOpen(true)}
                 className={`flex items-center gap-1 px-4 py-2 text-sm font-semibold transition-colors border-b-2 whitespace-nowrap ${
-                  productsOpen ? 'text-primary border-primary' : 'text-foreground border-transparent hover:text-primary hover:border-primary'
+                  productsOpen ? 'text-primary border-primary bg-muted' : 'text-foreground border-transparent bg-muted/40 hover:text-primary hover:border-primary hover:bg-muted'
                 }`}
               >
                 Products
@@ -146,8 +146,8 @@ const Header: React.FC = () => {
                 className={({ isActive }) =>
                   `px-4 py-2 text-sm font-semibold transition-colors border-b-2 whitespace-nowrap ${
                     isActive
-                      ? 'text-primary border-primary'
-                      : 'text-foreground border-transparent hover:text-primary hover:border-primary'
+                      ? 'text-primary border-primary bg-muted'
+                      : 'text-foreground border-transparent bg-muted/40 hover:text-primary hover:border-primary hover:bg-muted'
                   }`
                 }
               >

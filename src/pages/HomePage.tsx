@@ -6,7 +6,7 @@ import PageLayout from '@/components/layout/PageLayout';
 import PageMeta from '@/components/common/PageMeta';
 import { useCart } from '@/contexts/CartContext';
 import type { Product, Currency } from '@/types/product';
-import { FEATURED_CATEGORIES, CATEGORY_ICONS, formatMoney } from '@/types/product';
+import { FEATURED_CATEGORIES, CATEGORY_ICONS, CATEGORY_IMAGES, formatMoney } from '@/types/product';
 import { TAXONOMY } from '@/lib/taxonomy';
 
 /* ─── Benefits ─────────────────────────────────────────────────────────── */
@@ -99,9 +99,13 @@ const ProductCard: React.FC<{ product: Product; currency: Currency }> = ({ produ
         <span className="absolute top-3 left-3 bg-primary text-primary-foreground text-[9px] font-extrabold px-2 py-1 rounded-full uppercase tracking-wide z-10">
           {product.brand}
         </span>
-        <span className="text-primary/30 group-hover:text-primary/60 transition-colors text-6xl">
-          {CATEGORY_ICONS[product.category] ?? '📦'}
-        </span>
+        {CATEGORY_IMAGES[product.category] ? (
+          <img src={CATEGORY_IMAGES[product.category]} alt="" className="h-full w-full object-cover opacity-75 group-hover:scale-105 transition-transform duration-300" />
+        ) : (
+          <span className="text-primary/30 group-hover:text-primary/60 transition-colors text-6xl">
+            {CATEGORY_ICONS[product.category] ?? '📦'}
+          </span>
+        )}
       </div>
       <div className="p-5 flex flex-col flex-1">
         <p className="text-[10px] font-extrabold uppercase tracking-widest text-muted-foreground">{product.category}</p>
@@ -210,7 +214,7 @@ const HomePage: React.FC = () => {
               <img
                 src="/assets/hero/technology-hero.png"
                 alt="Business technology"
-                className="w-full max-w-md h-80 object-cover rounded-xl opacity-80"
+                className="w-full max-w-md h-80 object-cover object-left rounded-xl opacity-80"
               />
             </div>
           </div>
