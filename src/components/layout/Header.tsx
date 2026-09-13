@@ -96,8 +96,9 @@ const Header: React.FC = () => {
             {/* Products mega-dropdown */}
             <div className="relative" ref={dropRef}>
               <button
-                onClick={() => setProductsOpen(o => !o)}
+                onClick={() => navigate('/products')}
                 onMouseEnter={() => setProductsOpen(true)}
+                aria-label="Open products catalogue"
                 className={`flex items-center gap-1 px-4 py-2 text-sm font-semibold transition-colors border-b-2 whitespace-nowrap ${
                   productsOpen ? 'text-primary border-primary bg-muted' : 'text-foreground border-transparent bg-muted/40 hover:text-primary hover:border-primary hover:bg-muted'
                 }`}
