@@ -204,7 +204,7 @@ const HomePage: React.FC = () => {
             </div>
             <div className="md:col-span-2 hidden md:flex flex-col items-center justify-center text-center">
               <h2 className="mb-1 text-3xl font-extrabold leading-tight text-primary md:text-5xl">
-                Welcome to C Hear
+                Welcome to C-Hear
               </h2>
               <h3 className="mb-6 text-lg font-semibold tracking-wide text-white md:text-xl">
                 Tailored Hardware &amp; Enterprise Software Units
