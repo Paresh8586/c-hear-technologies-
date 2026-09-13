@@ -11,8 +11,23 @@ import {
   applyMargin, calcVat, getDeliveryTier, DEFAULT_WEIGHT_KG, VAT_RATES,
 } from '@/lib/pricing';
 
-type Country = 'GB' | 'US' | 'EU' | 'OTHER' | '';
+type Country = string;
 type Step = 'details' | 'payment' | 'confirmed';
+
+const COUNTRY_CODES = [
+  'GB',
+  'AF', 'AL', 'DZ', 'AD', 'AO', 'AG', 'AR', 'AM', 'AU', 'AT', 'AZ', 'BS', 'BH', 'BD', 'BB', 'BY', 'BE', 'BZ', 'BJ', 'BT', 'BO', 'BA', 'BW', 'BR', 'BN', 'BG', 'BF', 'BI',
+  'CV', 'KH', 'CM', 'CA', 'CF', 'TD', 'CL', 'CN', 'CO', 'KM', 'CG', 'CD', 'CR', 'CI', 'HR', 'CU', 'CY', 'CZ', 'DK', 'DJ', 'DM', 'DO', 'EC', 'EG', 'SV', 'GQ', 'ER', 'EE', 'SZ', 'ET',
+  'FJ', 'FI', 'FR', 'GA', 'GM', 'GE', 'DE', 'GH', 'GR', 'GD', 'GT', 'GN', 'GW', 'GY', 'HT', 'HN', 'HU', 'IS', 'IN', 'ID', 'IR', 'IQ', 'IE', 'IL', 'IT', 'JM', 'JP', 'JO', 'KZ', 'KE', 'KI', 'KP', 'KR', 'KW', 'KG', 'LA', 'LV', 'LB', 'LS', 'LR', 'LY', 'LI', 'LT', 'LU',
+  'MG', 'MW', 'MY', 'MV', 'ML', 'MT', 'MH', 'MR', 'MU', 'MX', 'FM', 'MD', 'MC', 'MN', 'ME', 'MA', 'MZ', 'MM', 'NA', 'NR', 'NP', 'NL', 'NZ', 'NI', 'NE', 'NG', 'MK', 'NO', 'OM', 'PK', 'PW', 'PA', 'PG', 'PY', 'PE', 'PH', 'PL', 'PT', 'QA', 'RO', 'RU', 'RW',
+  'KN', 'LC', 'VC', 'WS', 'SM', 'ST', 'SA', 'SN', 'RS', 'SC', 'SL', 'SG', 'SK', 'SI', 'SB', 'SO', 'ZA', 'SS', 'ES', 'LK', 'SD', 'SR', 'SE', 'CH', 'SY', 'TJ', 'TZ', 'TH', 'TL', 'TG', 'TO', 'TT', 'TN', 'TR', 'TM', 'TV', 'UG', 'UA', 'AE', 'US', 'UY', 'UZ', 'VU', 'VA', 'VE', 'VN', 'YE', 'ZM', 'ZW',
+  'AG', 'AS', 'AW', 'BM', 'BQ', 'BV', 'KY', 'CW', 'CX', 'CC', 'CK', 'FK', 'FO', 'GF', 'PF', 'TF', 'GI', 'GL', 'GP', 'GU', 'GG', 'HK', 'IM', 'JE', 'MO', 'MQ', 'MS', 'MF', 'MP', 'NC', 'NU', 'NF', 'PS', 'PN', 'PR', 'RE', 'SH', 'SX', 'PM', 'SJ', 'TW', 'TK', 'TC', 'VG', 'VI', 'WF',
+].filter((code, index, codes) => codes.indexOf(code) === index);
+
+const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
+const COUNTRIES = COUNTRY_CODES
+  .map(code => ({ code, name: regionNames.of(code) ?? code }))
+  .sort((a, b) => a.code === 'GB' ? -1 : b.code === 'GB' ? 1 : a.name.localeCompare(b.name));
 
 const CheckoutPage: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -94,13 +109,14 @@ const CheckoutPage: React.FC = () => {
               <span className="inline-block w-1.5 h-4 bg-primary rounded-full shrink-0" />
               Delivery Country
             </label>
-            <select value={country} onChange={e => setCountry(e.target.value as Country)}
+            <select value={country} onChange={e => setCountry(e.target.value)}
               className="w-full border-2 border-primary rounded px-3 py-2.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-primary/30 bg-background">
               <option value="">— Select your delivery country —</option>
-              <option value="GB">🇬🇧  United Kingdom (VAT 20%)</option>
-              <option value="EU">🇪🇺  European Union (0% VAT)</option>
-              <option value="US">🇺🇸  United States (0% VAT)</option>
-              <option value="OTHER">🌍  Other (0% VAT)</option>
+              {COUNTRIES.map(({ code, name }) => (
+                <option key={code} value={code}>
+                  {code === 'GB' ? '🇬🇧  ' : ''}{name}{code === 'GB' ? ' (VAT 20%)' : ''}
+                </option>
+              ))}
             </select>
             <p className="text-[10px] text-muted-foreground mt-1">Required — determines VAT applied to your order</p>
           </div>
