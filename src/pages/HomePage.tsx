@@ -210,11 +210,13 @@ const HomePage: React.FC = () => {
               <h3 className="mb-6 text-lg font-semibold tracking-wide text-white md:text-xl">
                 Tailored Hardware &amp; Enterprise Software Units
               </h3>
-              <img
-                src="/assets/hero/technology-hero.png"
-                alt="C-Hear hardware catalogue"
-                className="h-auto w-full max-w-[480px] object-contain opacity-80 [filter:drop-shadow(0_15px_25px_rgba(0,0,0,0.6))]"
-              />
+              <div className="w-full max-w-[480px] overflow-hidden rounded-2xl [filter:drop-shadow(0_15px_25px_rgba(0,0,0,0.6))]">
+                <img
+                  src="/assets/hero/technology-hero.png"
+                  alt="C-Hear hardware catalogue"
+                  className="h-auto w-full object-contain opacity-80"
+                />
+              </div>
               <p className="mt-7 text-lg font-bold tracking-wide text-white md:text-xl">
                 Scalable Infrastructure. Fast, Reliable UK Delivery.
               </p>
