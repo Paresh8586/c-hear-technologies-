@@ -211,11 +211,11 @@ const HomePage: React.FC = () => {
               </div>
             </div>
             <div className="md:col-span-2 hidden md:flex translate-y-4 flex-col items-center justify-center">
-              <p className="mb-1 text-center text-3xl font-extrabold leading-tight tracking-wide md:text-5xl">
+              <p className="mb-0 w-[calc(100%+3rem)] max-w-none -translate-x-6 text-center text-3xl font-extrabold leading-tight tracking-wide md:text-5xl">
                 <span className="block text-primary">Welcome to</span>
                 <span className="block text-white">C Hear</span>
               </p>
-              <p className="mb-1 text-center text-base font-bold leading-tight tracking-wide md:text-lg">
+              <p className="mb-0 w-[calc(100%+3rem)] max-w-none -translate-x-6 text-center text-base font-bold leading-tight tracking-wide md:text-lg">
                 <span className="text-primary">Your IT Specialist</span>{' '}
                 <span className="text-black">Partner</span>
               </p>
@@ -224,7 +224,7 @@ const HomePage: React.FC = () => {
                 alt="Business technology"
                 className="relative -translate-x-6 w-[calc(100%+3rem)] max-w-none h-80 object-contain object-center rounded-xl opacity-80"
               />
-              <p className="-mt-4 max-w-sm text-center text-lg font-bold leading-snug tracking-wide md:text-xl">
+              <p className="-mt-8 w-[calc(100%+3rem)] max-w-none -translate-x-6 text-center text-lg font-bold leading-snug tracking-wide md:text-xl">
                 <span className="text-primary">Technology that works</span>{' '}
                 <span className="text-white">as hard as your business.</span>
               </p>
