@@ -57,7 +57,9 @@ const Footer: React.FC = () => {
 
           {/* Brand col */}
           <div className="lg:col-span-2">
-            <img src="/assets/logo/chear-logo.png" alt="C HEAR" className="h-14 w-auto object-contain mb-4 brightness-[10] grayscale" />
+            <div className="mb-4 inline-flex rounded-xl bg-white px-4 py-2">
+              <img src="/assets/logo/chear-logo.png" alt="C HEAR" className="h-14 w-auto object-contain" />
+            </div>
             <h3 className="font-extrabold text-base mb-2">C Hear Technologies Limited</h3>
             <p className="text-white/50 text-sm mb-4 leading-relaxed max-w-xs">
               Genuine IT hardware and software supplies for business. Quality products, competitive prices, reliable support.
