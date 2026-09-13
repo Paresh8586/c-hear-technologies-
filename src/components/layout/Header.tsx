@@ -79,6 +79,20 @@ const Header: React.FC = () => {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-0 ml-auto">
+            <NavLink
+              to={NAV_LINKS[0].path}
+              end
+              className={({ isActive }) =>
+                `px-4 py-2 text-sm font-semibold transition-colors border-b-2 whitespace-nowrap ${
+                  isActive
+                    ? 'text-primary border-primary bg-muted'
+                    : 'text-foreground border-transparent bg-muted/40 hover:text-primary hover:border-primary hover:bg-muted'
+                }`
+              }
+            >
+              {NAV_LINKS[0].label}
+            </NavLink>
+
             {/* Products mega-dropdown */}
             <div className="relative" ref={dropRef}>
               <button
@@ -140,7 +154,7 @@ const Header: React.FC = () => {
               )}
             </div>
 
-            {NAV_LINKS.map(link => (
+            {NAV_LINKS.slice(1).map(link => (
               <NavLink
                 key={link.path}
                 to={link.path}
@@ -249,6 +263,20 @@ const Header: React.FC = () => {
             </form>
           </div>
           <nav className="flex flex-col py-2">
+            <NavLink
+              to={NAV_LINKS[0].path}
+              end
+              onClick={() => setMobileOpen(false)}
+              className={({ isActive }) =>
+                `px-6 py-3 text-sm font-semibold border-l-4 ${
+                  isActive
+                    ? 'text-primary border-primary bg-muted'
+                    : 'text-foreground border-transparent hover:text-primary hover:bg-muted'
+                }`
+              }
+            >
+              {NAV_LINKS[0].label}
+            </NavLink>
             <Link
               to="/products"
               onClick={() => setMobileOpen(false)}
@@ -256,7 +284,7 @@ const Header: React.FC = () => {
             >
               Products
             </Link>
-            {NAV_LINKS.map(link => (
+            {NAV_LINKS.slice(1).map(link => (
               <NavLink
                 key={link.path}
                 to={link.path}
