@@ -22,7 +22,7 @@ const SECTIONS: Section[] = [
           <li><strong className="text-foreground">"Customer"</strong> means any business entity or individual placing an order with the Company.</li>
           <li><strong className="text-foreground">"Goods"</strong> means any hardware, software, licensing or related products supplied by the Company.</li>
           <li><strong className="text-foreground">"Order"</strong> means a confirmed purchase order or accepted quotation.</li>
-          <li><strong className="text-foreground">"Website"</strong> means www.c-hear.co.uk and all sub-pages thereof.</li>
+          <li><strong className="text-foreground">"Website"</strong> means www.c-hear.online and all sub-pages thereof.</li>
           <li><strong className="text-foreground">"Working Day"</strong> means Monday to Friday, excluding UK public holidays.</li>
         </ul>
         <p>These Terms apply to all transactions conducted through the Website or by quotation, and supersede any prior agreements unless expressly agreed in writing by a director of the Company.</p>
@@ -195,10 +195,10 @@ const SECTIONS: Section[] = [
         <p>For any queries relating to these Terms and Conditions please contact:</p>
         <address className="not-italic flex flex-col gap-1">
           <strong className="text-foreground">C Hear Technologies Limited</strong>
-          <span>Email: <a href="mailto:info@c-hear.co.uk" className="text-primary hover:underline">info@c-hear.co.uk</a></span>
-          <span>Sales: <a href="mailto:sales@c-hear.co.uk" className="text-primary hover:underline">sales@c-hear.co.uk</a></span>
+          <span>Email: <a href="mailto:info@c-hear.online" className="text-primary hover:underline">info@c-hear.online</a></span>
+          <span>Sales: <a href="mailto:sales@c-hear.online" className="text-primary hover:underline">sales@c-hear.online</a></span>
           <span>Telephone: <a href="tel:+442038078262" className="text-primary hover:underline">0203 807 8262</a></span>
-          <span>Website: <a href="https://www.c-hear.co.uk" className="text-primary hover:underline">www.c-hear.co.uk</a></span>
+          <span>Website: <a href="https://www.c-hear.online" className="text-primary hover:underline">www.c-hear.online</a></span>
         </address>
       </div>
     ),
@@ -286,7 +286,7 @@ const TermsPage: React.FC = () => (
         <p>
           These Terms & Conditions were last reviewed on{' '}
           {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}.
-          For the most current version please visit <a href="https://www.c-hear.co.uk/terms" className="text-primary hover:underline">www.c-hear.co.uk/terms</a>.
+          For the most current version please visit <a href="https://www.c-hear.online/terms" className="text-primary hover:underline">www.c-hear.online/terms</a>.
           This document does not constitute legal advice. If you require legal advice please consult a qualified solicitor.
         </p>
       </div>

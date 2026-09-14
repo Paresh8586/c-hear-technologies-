@@ -2,14 +2,14 @@
  * QuoteBuilderPage — /admin/quote
  *
  * Staff tool to compose a formal quote reply to a customer enquiry received
- * at info@c-hear.co.uk.  The staff fills in:
+ * at info@c-hear.online.  The staff fills in:
  *   - Customer contact info (copied from the enquiry email)
  *   - Quote reference & expiry
  *   - Line items (product, qty, unit price ex-VAT)
  *   - Delivery charge, VAT (auto-calculated), notes
  *
  * On submit → opens the staff's email client pre-filled to send the quote
- * from sales@c-hear.co.uk with a formatted plain-text quote body.
+ * from sales@c-hear.online with a formatted plain-text quote body.
  *
  * A "Preview Quote" panel shows the formatted output in real time.
  */
@@ -105,7 +105,7 @@ const QuoteBuilderPage: React.FC = () => {
       `or call us on 0203 807 8262.`,
       ``,
       `C Hear Technologies Limited`,
-      `sales@c-hear.co.uk  |  www.c-hear.co.uk  |  0203 807 8262`,
+      `sales@c-hear.online  |  www.c-hear.online  |  0203 807 8262`,
     ].filter(l => l !== null).join('\n');
   }, [quoteRef, meta, client, lines, subtotalExVat, delivery, vatRate, vatAmount, grandTotal]);
 
@@ -114,8 +114,8 @@ const QuoteBuilderPage: React.FC = () => {
     if (!client.email) { toast.error('Please enter the customer email address.'); return; }
     if (lines.every(l => !l.description)) { toast.error('Please add at least one line item.'); return; }
     const subject = encodeURIComponent(`Quotation ${quoteRef} — C Hear Technologies`);
-    window.location.href = `mailto:${client.email}?cc=sales%40c-hear.co.uk&subject=${subject}&body=${encodeURIComponent(quoteText)}`;
-    toast.success('Email client opened — review and send from sales@c-hear.co.uk');
+    window.location.href = `mailto:${client.email}?cc=sales%40c-hear.online&subject=${subject}&body=${encodeURIComponent(quoteText)}`;
+    toast.success('Email client opened — review and send from sales@c-hear.online');
   };
 
   // ── Render ────────────────────────────────────────────────────────────────
@@ -131,7 +131,7 @@ const QuoteBuilderPage: React.FC = () => {
           <p className="eyebrow-label mb-2">STAFF TOOLS</p>
           <h1 className="text-4xl font-extrabold tracking-tight mb-2">Quote Builder</h1>
           <p className="text-white/60 max-w-2xl text-sm">
-            Compose a formal quotation in response to a customer enquiry. The completed quote opens in your email client, ready to send from <strong>sales@c-hear.co.uk</strong>.
+            Compose a formal quotation in response to a customer enquiry. The completed quote opens in your email client, ready to send from <strong>sales@c-hear.online</strong>.
           </p>
         </div>
       </section>
@@ -301,7 +301,7 @@ const QuoteBuilderPage: React.FC = () => {
               </div>
 
               <p className="text-[11px] text-muted-foreground">
-                Clicking "Send Quote" opens your email client with the quote pre-filled. Send from <strong>sales@c-hear.co.uk</strong>.
+                Clicking "Send Quote" opens your email client with the quote pre-filled. Send from <strong>sales@c-hear.online</strong>.
               </p>
             </div>
           </div>

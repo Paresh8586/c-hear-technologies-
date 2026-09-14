@@ -81,7 +81,7 @@ const InvoiceViewPage: React.FC = () => {
             <img src="/assets/logo/chear-logo.png" alt="C Hear Technologies" className="h-12 w-auto object-contain bg-white rounded px-2 py-1" />
             <div>
               <p className="font-extrabold text-lg leading-tight">C Hear Technologies Limited</p>
-              <p className="text-white/60 text-xs">sales@c-hear.co.uk · 0203 807 8262 · www.c-hear.co.uk</p>
+              <p className="text-white/60 text-xs">sales@c-hear.online · 0203 807 8262 · www.c-hear.online</p>
             </div>
           </div>
           <div className="text-right">
@@ -212,13 +212,13 @@ const InvoiceViewPage: React.FC = () => {
             <Printer size={14} /> Print / Save as PDF
           </button>
           <p className="text-xs text-muted-foreground">
-            Questions? Email <a href="mailto:sales@c-hear.co.uk" className="text-primary hover:underline">sales@c-hear.co.uk</a> or call <strong>0203 807 8262</strong>
+            Questions? Email <a href="mailto:sales@c-hear.online" className="text-primary hover:underline">sales@c-hear.online</a> or call <strong>0203 807 8262</strong>
           </p>
         </div>
 
         {/* Print-only footer */}
         <div className="hidden print:block text-xs text-muted-foreground text-center border-t pt-4 mt-2">
-          C Hear Technologies Limited · sales@c-hear.co.uk · www.c-hear.co.uk · 0203 807 8262<br />
+          C Hear Technologies Limited · sales@c-hear.online · www.c-hear.online · 0203 807 8262<br />
           Registered in England and Wales
         </div>
 

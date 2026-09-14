@@ -9,9 +9,9 @@ const TopBar: React.FC = () => (
           <Phone size={12} />
           <span>0203 807 8262</span>
         </a>
-        <a href="mailto:info@c-hear.co.uk" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+        <a href="mailto:info@c-hear.online" className="flex items-center gap-1.5 hover:text-primary transition-colors">
           <Mail size={12} />
-          <span>info@c-hear.co.uk</span>
+          <span>info@c-hear.online</span>
         </a>
       </div>
       <div className="hidden md:flex items-center gap-4">

@@ -22,7 +22,7 @@ const QuotePage: React.FC = () => {
     const body = encodeURIComponent(
       `Name: ${form.name}\nCompany: ${form.company || '—'}\nEmail: ${form.email}\nPhone: ${form.phone || '—'}\n\nProducts Requested:\n${cartLines || '  (no products listed)'}\n\nAdditional Requirements:\n${form.message}`
     );
-    window.location.href = `mailto:info@c-hear.co.uk?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:info@c-hear.online?subject=${subject}&body=${body}`;
     toast.success('Your email client is opening with your quote request pre-filled.');
     setForm({ name: '', company: '', email: '', phone: '', message: '' });
     clearCart('quote');

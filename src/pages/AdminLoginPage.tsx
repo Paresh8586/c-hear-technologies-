@@ -94,7 +94,7 @@ const AdminLoginPage: React.FC = () => {
           <p className="text-muted-foreground text-sm">
             Your account <strong className="text-foreground font-mono">{username}</strong> has been created with
             standard access. Contact an existing admin at{' '}
-            <a href="mailto:sales@c-hear.co.uk" className="text-primary hover:underline">sales@c-hear.co.uk</a>{' '}
+            <a href="mailto:sales@c-hear.online" className="text-primary hover:underline">sales@c-hear.online</a>{' '}
             to have your access level upgraded.
           </p>
           <button

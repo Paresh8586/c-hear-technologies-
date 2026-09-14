@@ -129,7 +129,7 @@ const InvoiceBuilderPage: React.FC = () => {
       `Please quote invoice number ${invoiceRef} on your payment.`,
       ``,
       `C Hear Technologies Limited`,
-      `sales@c-hear.co.uk  |  www.c-hear.co.uk  |  0203 807 8262`,
+      `sales@c-hear.online | www.c-hear.online | 0203 807 8262`,
     ].filter(Boolean).join('\n');
   }, [invoiceRef, meta, client, lines, subtotalExVat, delivery, vatRate, vatAmount, grandTotal, invoiceViewUrl]);
 
@@ -137,8 +137,8 @@ const InvoiceBuilderPage: React.FC = () => {
   const handleSend = () => {
     if (!client.email) { toast.error('Enter the customer email address.'); return; }
     const subject = encodeURIComponent(`Invoice ${invoiceRef} — C Hear Technologies`);
-    window.location.href = `mailto:${client.email}?cc=sales%40c-hear.co.uk&subject=${subject}&body=${encodeURIComponent(emailBody)}`;
-    toast.success('Email client opened — send from sales@c-hear.co.uk');
+    window.location.href = `mailto:${client.email}?cc=sales%40c-hear.online&subject=${subject}&body=${encodeURIComponent(emailBody)}`;
+    toast.success('Email client opened — send from sales@c-hear.online');
   };
 
   const handleCopyLink = () => {
@@ -162,7 +162,7 @@ const InvoiceBuilderPage: React.FC = () => {
           <p className="eyebrow-label mb-2">STAFF TOOLS</p>
           <h1 className="text-4xl font-extrabold tracking-tight mb-2">Invoice Builder</h1>
           <p className="text-white/60 max-w-2xl text-sm">
-            Raise a formal invoice after quote acceptance. Add a secure payment link from your merchant provider and send from <strong>sales@c-hear.co.uk</strong>.
+            Raise a formal invoice after quote acceptance. Add a secure payment link from your merchant provider and send from <strong>sales@c-hear.online</strong>.
           </p>
         </div>
       </section>

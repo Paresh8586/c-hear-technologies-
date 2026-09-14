@@ -159,7 +159,7 @@ const HomePage: React.FC = () => {
     const body = encodeURIComponent(
       `Name: ${quoteForm.name}\nCompany: ${quoteForm.company || '—'}\nEmail: ${quoteForm.email}\n\nRequirements:\n${quoteForm.message}`
     );
-    window.location.href = `mailto:sales@c-hear.co.uk?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:sales@c-hear.online?subject=${subject}&body=${body}`;
     toast.success('Quote request sent! We will be in touch shortly.');
     setQuoteForm({ name: '', company: '', email: '', message: '' });
   };

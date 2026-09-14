@@ -323,7 +323,7 @@ const CheckoutPage: React.FC = () => {
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <a
-                      href={`mailto:sales@c-hear.co.uk?subject=${encodeURIComponent('Order enquiry from C-Hear website')}&body=${encodeURIComponent(`Name: ${form.name}\nCompany: ${form.company}\nEmail: ${form.email}\nOrder total: ${fmt(breakdown.grandTotal)}`)}`}
+                      href={`mailto:sales@c-hear.online?subject=${encodeURIComponent('Order enquiry from C-Hear website')}&body=${encodeURIComponent(`Name: ${form.name}\nCompany: ${form.company}\nEmail: ${form.email}\nOrder total: ${fmt(breakdown.grandTotal)}`)}`}
                       className="inline-flex items-center justify-center bg-primary text-primary-foreground font-bold px-5 py-3 rounded hover:bg-primary/90 transition-colors"
                     >
                       Contact sales

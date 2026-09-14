@@ -73,7 +73,7 @@ const Header: React.FC = () => {
               <div className="font-extrabold text-base leading-tight tracking-tight text-foreground">
                 C Hear Technologies Limited
               </div>
-              <div className="text-primary text-xs font-semibold">www.c-hear.co.uk</div>
+              <div className="text-primary text-xs font-semibold">www.c-hear.online</div>
             </div>
           </Link>
 

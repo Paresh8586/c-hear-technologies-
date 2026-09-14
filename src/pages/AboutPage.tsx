@@ -101,7 +101,7 @@ const AboutPage: React.FC = () => (
             <div className="border border-border rounded-xl p-8 bg-card flex flex-col items-center text-center shadow-sm">
               <img src="/assets/logo/chear-logo.png" alt="C HEAR Technologies" className="h-20 w-auto object-contain mb-4" />
               <p className="font-extrabold text-xl">C Hear Technologies Limited</p>
-              <p className="text-primary text-sm font-semibold mt-1">www.c-hear.co.uk</p>
+              <p className="text-primary text-sm font-semibold mt-1">www.c-hear.online</p>
               <p className="text-muted-foreground text-sm mt-3 max-w-xs leading-relaxed">
                 Quality products. Competitive prices. Reliable support.
               </p>

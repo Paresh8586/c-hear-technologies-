@@ -68,8 +68,8 @@ const Footer: React.FC = () => {
               <a href="tel:+442038078262" className="flex items-center gap-2 text-white/50 text-sm hover:text-primary transition-colors">
                 <Phone size={13} /> 0203 807 8262
               </a>
-              <a href="mailto:info@c-hear.co.uk" className="flex items-center gap-2 text-white/50 text-sm hover:text-primary transition-colors">
-                <Mail size={13} /> info@c-hear.co.uk
+              <a href="mailto:info@c-hear.online" className="flex items-center gap-2 text-white/50 text-sm hover:text-primary transition-colors">
+                <Mail size={13} /> info@c-hear.online
               </a>
             </div>
             <div className="flex items-center gap-3">
@@ -117,11 +117,11 @@ const Footer: React.FC = () => {
               </div>
               <div>
                 <p className="text-white/30 text-xs uppercase tracking-wider mb-1">General</p>
-                <a href="mailto:info@c-hear.co.uk" className="text-white/60 text-sm hover:text-primary transition-colors">info@c-hear.co.uk</a>
+                <a href="mailto:info@c-hear.online" className="text-white/60 text-sm hover:text-primary transition-colors">info@c-hear.online</a>
               </div>
               <div>
                 <p className="text-white/30 text-xs uppercase tracking-wider mb-1">Sales</p>
-                <a href="mailto:sales@c-hear.co.uk" className="text-white/60 text-sm hover:text-primary transition-colors">sales@c-hear.co.uk</a>
+                <a href="mailto:sales@c-hear.online" className="text-white/60 text-sm hover:text-primary transition-colors">sales@c-hear.online</a>
               </div>
               <div>
                 <p className="text-white/30 text-xs uppercase tracking-wider mb-1">Hours</p>

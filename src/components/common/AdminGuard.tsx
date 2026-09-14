@@ -49,10 +49,10 @@ const AdminGuard: React.FC<AdminGuardProps> = ({ children }) => {
             to have your role upgraded.
           </p>
           <a
-            href="mailto:sales@c-hear.co.uk?subject=Staff%20Portal%20Access%20Request"
+            href="mailto:sales@c-hear.online?subject=Staff%20Portal%20Access%20Request"
             className="flex items-center gap-2 bg-primary text-primary-foreground font-bold px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors text-sm"
           >
-            <Mail size={14} /> Email sales@c-hear.co.uk
+            <Mail size={14} /> Email sales@c-hear.online
           </a>
           <button
             onClick={() => window.location.href = '/'}

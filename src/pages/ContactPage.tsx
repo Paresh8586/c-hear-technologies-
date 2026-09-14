@@ -6,9 +6,9 @@ import PageMeta from '@/components/common/PageMeta';
 
 const CONTACT_DETAILS = [
   { icon: <Phone size={18} className="text-primary" />, label: 'Phone', value: '0203 807 8262', href: 'tel:+442038078262' },
-  { icon: <Mail size={18} className="text-primary" />, label: 'General Enquiries', value: 'info@c-hear.co.uk', href: 'mailto:info@c-hear.co.uk' },
-  { icon: <Mail size={18} className="text-primary" />, label: 'Sales', value: 'sales@c-hear.co.uk', href: 'mailto:sales@c-hear.co.uk' },
-  { icon: <Globe size={18} className="text-primary" />, label: 'Website', value: 'www.c-hear.co.uk', href: 'https://www.c-hear.co.uk' },
+  { icon: <Mail size={18} className="text-primary" />, label: 'General Enquiries', value: 'info@c-hear.online', href: 'mailto:info@c-hear.online' },
+  { icon: <Mail size={18} className="text-primary" />, label: 'Sales', value: 'sales@c-hear.online', href: 'mailto:sales@c-hear.online' },
+  { icon: <Globe size={18} className="text-primary" />, label: 'Website', value: 'www.c-hear.online', href: 'https://www.c-hear.online' },
 ];
 
 const ContactPage: React.FC = () => {
@@ -20,7 +20,7 @@ const ContactPage: React.FC = () => {
     const body = encodeURIComponent(
       `Name: ${form.name}\nCompany: ${form.company || '—'}\nEmail: ${form.email}\nPhone: ${form.phone || '—'}\n\nMessage:\n${form.message}`
     );
-    window.location.href = `mailto:info@c-hear.co.uk?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:info@c-hear.online?subject=${subject}&body=${body}`;
     toast.success('Your email client is opening with your enquiry pre-filled.');
     setForm({ name: '', company: '', email: '', phone: '', message: '' });
   };
@@ -29,7 +29,7 @@ const ContactPage: React.FC = () => {
     <PageLayout>
       <PageMeta
         title="Contact C-Hear Technologies — Get in Touch"
-        description="Contact C-Hear Technologies for IT hardware and software enquiries. Phone 0203 807 8262, email info@c-hear.co.uk or use our online enquiry form."
+        description="Contact C-Hear Technologies for IT hardware and software enquiries. Phone 0203 807 8262, email info@c-hear.online or use our online enquiry form."
         keywords="contact C-Hear, IT enquiry, technology supplier contact, get a quote, sales enquiry"
       />
 
@@ -60,13 +60,13 @@ const ContactPage: React.FC = () => {
                 <p className="font-extrabold text-lg group-hover:underline">0203 807 8262</p>
               </div>
             </a>
-            <a href="mailto:sales@c-hear.co.uk" className="flex items-center gap-4 py-5 px-6 hover:bg-primary/80 transition-colors group">
+            <a href="mailto:sales@c-hear.online" className="flex items-center gap-4 py-5 px-6 hover:bg-primary/80 transition-colors group">
               <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center shrink-0">
                 <Mail size={18} className="text-white" />
               </div>
               <div>
                 <p className="text-xs text-white/70 font-medium">Email our sales team</p>
-                <p className="font-extrabold text-lg group-hover:underline">sales@c-hear.co.uk</p>
+                <p className="font-extrabold text-lg group-hover:underline">sales@c-hear.online</p>
               </div>
             </a>
           </div>
@@ -127,7 +127,7 @@ const ContactPage: React.FC = () => {
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   C Hear Technologies Limited<br />
                   United Kingdom<br />
-                  <a href="https://www.c-hear.co.uk" className="text-primary hover:underline font-medium">www.c-hear.co.uk</a>
+                  <a href="https://www.c-hear.online" className="text-primary hover:underline font-medium">www.c-hear.online</a>
                 </p>
               </div>
             </div>

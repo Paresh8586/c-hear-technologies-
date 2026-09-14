@@ -1,6 +1,6 @@
 # C-Hear Technologies Limited — Website Deployment Guide
 
-> **Production site:** [www.c-hear.co.uk](https://www.c-hear.co.uk)
+> **Production site:** [www.c-hear.online](https://www.c-hear.online)
 > **Tech stack:** React 18 + TypeScript + Vite + Tailwind CSS + Supabase
 
 ---
@@ -159,7 +159,7 @@ Every `git push` to `main` will trigger a new production deploy automatically.
 
 5. **Deploy** — Cloudflare Pages automatically handles SPA routing.
 
-> **Note:** Cloudflare Pages is particularly good if you already manage `c-hear.co.uk` DNS through Cloudflare, as connecting your domain is a single click.
+> **Note:** Cloudflare Pages is particularly good if you already manage `c-hear.online` DNS through Cloudflare, as connecting your domain is a single click.
 
 ---
 
@@ -201,7 +201,7 @@ nano .env
 
 ```bash
 sudo apt install certbot
-sudo certbot certonly --standalone -d c-hear.co.uk -d www.c-hear.co.uk
+sudo certbot certonly --standalone -d c-hear.online -d www.c-hear.online
 ```
 
 ### Step 5 — Start the application
@@ -210,7 +210,7 @@ sudo certbot certonly --standalone -d c-hear.co.uk -d www.c-hear.co.uk
 docker compose up -d --build
 ```
 
-The site will be live at `https://www.c-hear.co.uk`
+The site will be live at `https://www.c-hear.online`
 
 ### Updating the site
 
@@ -233,7 +233,7 @@ echo "0 0 1 */2 * certbot renew --quiet && docker compose restart nginx" | sudo 
 ### For Vercel
 
 1. Go to your project → **Settings → Domains**
-2. Click **"Add"** and enter `www.c-hear.co.uk`
+2. Click **"Add"** and enter `www.c-hear.online`
 3. Vercel will show you a CNAME record to add at your domain registrar
 4. Log into your domain registrar (GoDaddy, Namecheap, 123-reg, etc.)
 5. Add the DNS record:
@@ -242,7 +242,7 @@ echo "0 0 1 */2 * certbot renew --quiet && docker compose restart nginx" | sudo 
    Name:  www
    Value: cname.vercel-dns.com
    ```
-6. For the apex domain (`c-hear.co.uk` without www), add:
+6. For the apex domain (`c-hear.online` without www), add:
    ```
    Type:  A
    Name:  @
@@ -253,7 +253,7 @@ echo "0 0 1 */2 * certbot renew --quiet && docker compose restart nginx" | sudo 
 ### For Netlify
 
 1. Site settings → **Domain management → Add custom domain**
-2. Add both `c-hear.co.uk` and `www.c-hear.co.uk`
+2. Add both `c-hear.online` and `www.c-hear.online`
 3. Update DNS at your registrar:
    ```
    Type:  CNAME
@@ -264,7 +264,7 @@ echo "0 0 1 */2 * certbot renew --quiet && docker compose restart nginx" | sudo 
 
 ### For Cloudflare Pages
 
-1. If `c-hear.co.uk` is already on Cloudflare DNS, simply click **"Set up a custom domain"** in your Pages project — it connects in seconds.
+1. If `c-hear.online` is already on Cloudflare DNS, simply click **"Set up a custom domain"** in your Pages project — it connects in seconds.
 2. If not, transfer DNS to Cloudflare first for the easiest management.
 
 ---
@@ -272,8 +272,8 @@ echo "0 0 1 */2 * certbot renew --quiet && docker compose restart nginx" | sudo 
 ## 9. Supabase Configuration
 
 1. In **Supabase Dashboard → Authentication → URL Configuration**:
-   - Set **Site URL** to `https://www.c-hear.co.uk`
-   - Add `https://www.c-hear.co.uk` to **Redirect URLs**
+   - Set **Site URL** to `https://www.c-hear.online`
+   - Add `https://www.c-hear.online` to **Redirect URLs**
 
 2. In **Supabase Dashboard → Settings → API**:
    - Confirm your anon key is correct in your production environment variables
@@ -285,20 +285,20 @@ echo "0 0 1 */2 * certbot renew --quiet && docker compose restart nginx" | sudo 
 ## 10. Pre-Launch Checklist
 
 - [ ] Supabase environment variables set in hosting provider dashboard
-- [ ] Supabase Site URL updated to `https://www.c-hear.co.uk`
+- [ ] Supabase Site URL updated to `https://www.c-hear.online`
 - [ ] DNS A/CNAME records updated at your domain registrar
 - [ ] SSL certificate active (green padlock in browser)
 - [ ] Test a complete checkout flow with a real card
-- [ ] Test quote submission form (check `info@c-hear.co.uk` receives emails)
+- [ ] Test quote submission form (check `info@c-hear.online` receives emails)
 - [ ] Test staff portal login at `/staff-portal` with admin credentials
 - [ ] Verify all 645 products load correctly
 - [ ] Check site on mobile (iOS Safari + Android Chrome)
-- [ ] Confirm `www.c-hear.co.uk` and `c-hear.co.uk` both redirect correctly
+- [ ] Confirm `www.c-hear.online` and `c-hear.online` both redirect correctly
 
 ---
 
 *Generated for C-Hear Technologies Limited — IT Hardware & Software Supplier, London UK*
-*Contact: info@c-hear.co.uk | sales@c-hear.co.uk | 0203 807 8262*
+*Contact: info@c-hear.online | sales@c-hear.online | 0203 807 8262*
 
 ---
 
