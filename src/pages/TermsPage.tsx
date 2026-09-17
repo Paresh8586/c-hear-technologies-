@@ -78,6 +78,22 @@ const SECTIONS: Section[] = [
     ),
   },
   {
+    id: 'worldpay',
+    title: '5. Worldpay Hosted Payments',
+    content: (
+      <div className="flex flex-col gap-3 text-sm text-muted-foreground">
+        <p>Where card payment is available, C Hear Technologies Limited uses Worldpay Hosted Payments to process transactions securely.</p>
+        <ul className="list-disc pl-5 flex flex-col gap-1.5">
+          <li>Customers are redirected to Worldpay's secure hosted payment page to enter card details.</li>
+          <li>C-Hear does not store or process full card numbers, security codes or other raw card data.</li>
+          <li>Worldpay may apply its own authentication, fraud-prevention and 3-D Secure procedures.</li>
+          <li>Payment approval, decline, cancellation and refund status are subject to Worldpay's service and the Company's order-confirmation process.</li>
+        </ul>
+        <p>Worldpay's own terms, privacy notice and payment authentication requirements also apply to the payment transaction. If Worldpay payment is unavailable, customers may contact sales to arrange an alternative payment method.</p>
+      </div>
+    ),
+  },
+  {
     id: 'delivery',
     title: '5. Delivery Conditions',
     content: (

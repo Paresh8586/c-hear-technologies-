@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { ShoppingBag, Info, CheckCircle2, ArrowRight } from 'lucide-react';
+import { ShoppingBag, Info, CheckCircle2, ArrowRight, CreditCard } from 'lucide-react';
 import { toast } from 'sonner';
 import PageLayout from '@/components/layout/PageLayout';
 import PageMeta from '@/components/common/PageMeta';
@@ -10,6 +10,7 @@ import { CURRENCY_RATES, CURRENCY_SYMBOLS } from '@/types/product';
 import {
   applyMargin, calcVat, getDeliveryTier, DEFAULT_WEIGHT_KG, VAT_RATES,
 } from '@/lib/pricing';
+import { startWorldpayCheckout, worldpayStatus } from '@/lib/worldpay';
 
 type Country = string;
 type Step = 'details' | 'payment' | 'confirmed';
@@ -40,6 +41,7 @@ const CheckoutPage: React.FC = () => {
   const [country, setCountry]   = useState<Country>('');
   const [currency, setCurrency] = useState<Currency>('GBP');
   const [step, setStep]         = useState<Step>('details');
+  const [paymentLoading, setPaymentLoading] = useState(false);
   const [form, setForm] = useState({
     name: '', company: '', email: '', phone: '',
     city: '', postcode: '', address: '', message: '',
@@ -83,6 +85,21 @@ const CheckoutPage: React.FC = () => {
     if (!country) { toast.error('Please select a delivery country to calculate VAT.'); return; }
     setStep('payment');
     window.scrollTo({ top: 0, behavior: 'instant' });
+  };
+
+  const handleWorldpayCheckout = async () => {
+    setPaymentLoading(true);
+    try {
+      await startWorldpayCheckout({
+        amount: breakdown.grandTotal,
+        currency: 'GBP',
+        customerEmail: form.email,
+      });
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : 'Worldpay checkout is unavailable.');
+    } finally {
+      setPaymentLoading(false);
+    }
   };
 
   // ── Step indicator ────────────────────────────────────────────────────────
@@ -316,12 +333,22 @@ const CheckoutPage: React.FC = () => {
                 </div>
 
                 <div className="bg-card border border-border rounded p-6">
-                  <h2 className="font-extrabold text-xl mb-2">Payment setup in progress</h2>
+                  <div className="flex items-center gap-2 mb-2">
+                    <CreditCard size={20} className="text-primary" />
+                    <h2 className="font-extrabold text-xl">Pay securely with Worldpay</h2>
+                  </div>
                   <p className="text-muted-foreground text-sm mb-5">
-                    Online payment is temporarily unavailable while we connect our new merchant provider.
-                    Please contact sales to complete your order.
+                    You will be redirected to Worldpay Hosted Payments. Card details are entered on Worldpay's secure payment page and are not stored by C-Hear.
                   </p>
                   <div className="flex flex-wrap gap-3">
+                    <button
+                      type="button"
+                      onClick={handleWorldpayCheckout}
+                      disabled={!worldpayStatus.enabled || paymentLoading}
+                      className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-bold px-5 py-3 rounded hover:bg-primary/90 transition-colors disabled:cursor-not-allowed disabled:opacity-50"
+                    >
+                      {paymentLoading ? 'Connecting to Worldpay…' : 'Continue to Worldpay'}
+                    </button>
                     <a
                       href={`mailto:sales@c-hear.online?subject=${encodeURIComponent('Order enquiry from C-Hear website')}&body=${encodeURIComponent(`Name: ${form.name}\nCompany: ${form.company}\nEmail: ${form.email}\nOrder total: ${fmt(breakdown.grandTotal)}`)}`}
                       className="inline-flex items-center justify-center bg-primary text-primary-foreground font-bold px-5 py-3 rounded hover:bg-primary/90 transition-colors"
@@ -332,6 +359,11 @@ const CheckoutPage: React.FC = () => {
                       ← Edit details
                     </button>
                   </div>
+                  {!worldpayStatus.enabled && (
+                    <p className="mt-4 text-xs text-muted-foreground">
+                      Worldpay payments are being activated. Please contact sales while merchant credentials and the secure checkout endpoint are being configured.
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
