@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import IntersectObserver from '@/components/common/IntersectObserver';
+import ScrollToTop from '@/components/common/ScrollToTop';
 import { Toaster } from '@/components/ui/sonner';
 import { CartProvider } from '@/contexts/CartContext';
 import { AuthProvider } from '@/contexts/AuthContext';
@@ -16,6 +17,7 @@ const App: React.FC = () => {
       <AuthProvider>
         <CartProvider>
           <IntersectObserver />
+          <ScrollToTop />
           <Routes>
             {/* Staff login — public */}
             <Route path="/admin/login" element={<AdminLoginPage />} />
