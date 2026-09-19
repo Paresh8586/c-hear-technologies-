@@ -74,6 +74,7 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@ast-grep/cli": "0.45.3",
     "@biomejs/biome": "2.4.5",
     "@tailwindcss/container-queries": "^0.1.1",
     "@testing-library/jest-dom": "^6.10.0",
