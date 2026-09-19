@@ -14,6 +14,7 @@ import QuoteBuilderPage from './pages/QuoteBuilderPage';
 import InvoiceBuilderPage from './pages/InvoiceBuilderPage';
 import InvoiceViewPage from './pages/InvoiceViewPage';
 import TermsPage from './pages/TermsPage';
+import PaymentResultPage from './pages/PaymentResultPage';
 
 export interface RouteConfig {
   name: string;
@@ -37,6 +38,7 @@ export const routes: RouteConfig[] = [
   { name: 'Checkout',        path: '/checkout',        element: <CheckoutPage />,       public: true },
   { name: 'Invoice View',    path: '/invoice',         element: <InvoiceViewPage />,    public: true },
   { name: 'Terms',           path: '/terms',           element: <TermsPage />,          public: true },
+  { name: 'Payment Result',  path: '/payment/:status', element: <PaymentResultPage />,  public: true },
   // Staff / admin tools
   { name: 'Stock Import',    path: '/admin/stock',     element: <StockImportPage />,    public: true },
   { name: 'Quote Builder',   path: '/admin/quote',     element: <QuoteBuilderPage />,   public: true },

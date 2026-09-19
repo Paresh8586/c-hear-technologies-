@@ -3,6 +3,35 @@
 > **Production site:** [www.c-hear.online](https://www.c-hear.online)
 > **Tech stack:** React 18 + TypeScript + Vite + Tailwind CSS + Supabase
 
+## Worldpay Hosted Payment Pages
+
+The checkout uses a Vercel Function to create a Worldpay Hosted Payment Page session. Card details are entered on Worldpay, not on this website. The server-only credentials must never be prefixed with `VITE_`, committed to Git, or placed in the frontend bundle.
+
+Add these variables in the Vercel project settings for the relevant environment:
+
+```env
+VITE_WORLDPAY_ENABLED=true
+VITE_WORLDPAY_CHECKOUT_ENDPOINT=/api/worldpay/create-payment-session
+WORLDPAY_HPP_ENDPOINT=<the exact HPP API endpoint supplied by Worldpay>
+WORLDPAY_USERNAME=<Worldpay test or production username>
+WORLDPAY_PASSWORD=<Worldpay test or production password>
+WORLDPAY_INSTALLATION_ID=<Worldpay installation ID, if required by the account>
+WORLDPAY_WEBHOOK_SECRET=<secret/configuration supplied for webhook verification>
+```
+
+The Vercel Functions are:
+
+- `POST /api/worldpay/create-payment-session`
+- `POST /api/worldpay/webhook`
+
+Register these return URLs with Worldpay:
+
+- `https://www.c-hear.online/payment/success`
+- `https://www.c-hear.online/payment/failed`
+- `https://www.c-hear.online/api/worldpay/webhook`
+
+Use Worldpay's exact HPP API endpoint, content type and webhook-signature format from the merchant account documentation. The application deliberately remains disabled until those values are configured. The webhook currently verifies the configured HMAC signature and acknowledges the event; connecting it to a Supabase `orders` table requires the final order schema and Worldpay event payload to be confirmed.
+
 ---
 
 ## Table of Contents
