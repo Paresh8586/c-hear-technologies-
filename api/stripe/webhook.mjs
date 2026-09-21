@@ -6,6 +6,15 @@ const json = (res, status, body) => {
   res.status(status).setHeader('Content-Type', 'application/json').send(body);
 };
 
+const readRawBody = async (req) => {
+  if (typeof req.body === 'string') return req.body;
+  if (Buffer.isBuffer(req.body)) return req.body.toString('utf8');
+
+  const chunks = [];
+  for await (const chunk of req) chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+  return Buffer.concat(chunks).toString('utf8');
+};
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
@@ -18,7 +27,7 @@ export default async function handler(req, res) {
     return json(res, 503, { error: 'Stripe webhook verification is not configured.' });
   }
 
-  const rawBody = typeof req.body === 'string' ? req.body : '';
+  const rawBody = await readRawBody(req);
   const timestamp = signature.match(/(?:^|,)t=(\d+)/)?.[1];
   const signed = signature.match(/(?:^|,)v1=([a-f0-9]+)/)?.[1];
   if (!timestamp || !signed || Math.abs(Date.now() / 1000 - Number(timestamp)) > 300) {

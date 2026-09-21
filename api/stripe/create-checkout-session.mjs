@@ -33,6 +33,8 @@ export default async function handler(req, res) {
   const origin = `${req.headers['x-forwarded-proto'] || 'https'}://${req.headers.host}`;
   const params = new URLSearchParams({
     mode: 'payment',
+    'payment_method_types[0]': 'card',
+    'payment_method_options[card][request_three_d_secure]': 'automatic',
     success_url: `${origin}/payment/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/payment/failed`,
     customer_email: customerEmail,
