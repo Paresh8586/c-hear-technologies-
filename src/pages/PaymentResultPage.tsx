@@ -11,7 +11,7 @@ const PaymentResultPage: React.FC = () => {
     <PageLayout>
       <PageMeta
         title={successful ? 'Payment received | C-Hear' : 'Payment not completed | C-Hear'}
-        description="Worldpay payment result"
+        description="Stripe payment result"
       />
       <section className="py-20 px-4">
         <div className="max-w-2xl mx-auto text-center">
@@ -23,7 +23,7 @@ const PaymentResultPage: React.FC = () => {
           </h1>
           <p className="text-muted-foreground mb-8">
             {successful
-              ? 'Worldpay has returned you to C-Hear. Your order remains subject to confirmation after we receive the payment notification.'
+              ? 'Stripe has returned you to C-Hear. Your order remains subject to confirmation after we receive the payment notification.'
               : 'No payment has been confirmed. You can return to checkout or contact sales for assistance.'}
           </p>
           <div className="flex flex-wrap justify-center gap-3">

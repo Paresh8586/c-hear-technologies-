@@ -10,7 +10,7 @@ import { CURRENCY_RATES, CURRENCY_SYMBOLS } from '@/types/product';
 import {
   applyMargin, calcVat, getDeliveryTier, DEFAULT_WEIGHT_KG, VAT_RATES,
 } from '@/lib/pricing';
-import { startWorldpayCheckout, worldpayStatus } from '@/lib/worldpay';
+import { startStripeCheckout, stripeStatus } from '@/lib/stripe';
 
 type Country = string;
 type Step = 'details' | 'payment' | 'confirmed';
@@ -87,16 +87,16 @@ const CheckoutPage: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
-  const handleWorldpayCheckout = async () => {
+  const handleStripeCheckout = async () => {
     setPaymentLoading(true);
     try {
-      await startWorldpayCheckout({
+      await startStripeCheckout({
         amount: breakdown.grandTotal,
         currency: 'GBP',
         customerEmail: form.email,
       });
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : 'Worldpay checkout is unavailable.');
+      toast.error(error instanceof Error ? error.message : 'Stripe Checkout is unavailable.');
     } finally {
       setPaymentLoading(false);
     }
@@ -335,19 +335,19 @@ const CheckoutPage: React.FC = () => {
                 <div className="bg-card border border-border rounded p-6">
                   <div className="flex items-center gap-2 mb-2">
                     <CreditCard size={20} className="text-primary" />
-                    <h2 className="font-extrabold text-xl">Pay securely with Worldpay</h2>
+                    <h2 className="font-extrabold text-xl">Pay securely with Stripe</h2>
                   </div>
                   <p className="text-muted-foreground text-sm mb-5">
-                    You will be redirected to Worldpay Hosted Payments. Card details are entered on Worldpay's secure payment page and are not stored by C-Hear.
+                    You will be redirected to Stripe Checkout. Card details are entered on Stripe's secure payment page and are not stored by C-Hear.
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <button
                       type="button"
-                      onClick={handleWorldpayCheckout}
-                      disabled={!worldpayStatus.enabled || paymentLoading}
+                      onClick={handleStripeCheckout}
+                      disabled={!stripeStatus.enabled || paymentLoading}
                       className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-bold px-5 py-3 rounded hover:bg-primary/90 transition-colors disabled:cursor-not-allowed disabled:opacity-50"
                     >
-                      {paymentLoading ? 'Connecting to Worldpay…' : 'Continue to Worldpay'}
+                      {paymentLoading ? 'Connecting to Stripe…' : 'Continue to Stripe'}
                     </button>
                     <a
                       href={`mailto:sales@c-hear.online?subject=${encodeURIComponent('Order enquiry from C-Hear website')}&body=${encodeURIComponent(`Name: ${form.name}\nCompany: ${form.company}\nEmail: ${form.email}\nOrder total: ${fmt(breakdown.grandTotal)}`)}`}
@@ -359,9 +359,9 @@ const CheckoutPage: React.FC = () => {
                       ← Edit details
                     </button>
                   </div>
-                  {!worldpayStatus.enabled && (
+                  {!stripeStatus.enabled && (
                     <p className="mt-4 text-xs text-muted-foreground">
-                      Worldpay payments are being activated. Please contact sales while merchant credentials and the secure checkout endpoint are being configured.
+                      Stripe payments are being activated. Please contact sales while the Stripe account and secure checkout endpoint are being configured.
                     </p>
                   )}
                 </div>
