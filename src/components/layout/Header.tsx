@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { ShoppingCart, Menu, X, ChevronDown, Search, Phone } from 'lucide-react';
+import { ShoppingCart, Menu, X, ChevronDown, Search } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
 import { TAXONOMY } from '@/lib/taxonomy';
 
@@ -217,15 +217,6 @@ const Header: React.FC = () => {
                 </span>
               )}
             </button>
-
-            {/* Phone — visible on lg+ */}
-            <a
-              href="tel:+442038078262"
-              className="hidden lg:flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-primary transition-colors"
-            >
-              <Phone size={14} />
-              0203 807 8262
-            </a>
 
             <Link
               to="/quote"
